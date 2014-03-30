@@ -1,78 +1,26 @@
 ﻿scriptencoding utf-8
 
 let mapleader = ";"
+source $VIMRUNTIME/macros/matchit.vim
 
 " NeoBundle
-set nocompatible
-filetype off
-
 if has('vim_starting')
-  if isdirectory(expand('~/vimfiles'))
-    set rtp+=~/vimfiles/neobundle.vim
-    call neobundle#rc('~/vimfiles/bundle')
-  elseif isdirectory(expand('~/.vim'))
-    set rtp+=~/.vim/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle'))
+  if isdirectory(expand('~/vimfiles/'))
+    set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+    call neobundle#rc(expand('~/vimfiles/bundle/'))
+  elseif isdirectory(expand('~/.vim/'))
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    call neobundle#rc(expand('~/.vim/bundle/'))
   endif
 endif
 
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
+" vimproc
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'jceb/vim-hier'
-NeoBundle 'lambdalisue/nose.vim'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'sgur/unite-qf'
-NeoBundle 't9md/vim-quickhl'
-NeoBundle 't9md/vim-textmanip'
-NeoBundle 'thinca/vim-localrc'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'tsukkee/unite-help'
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'vim-jp/vimdoc-ja'
-
-filetype plugin on
-filetype indent on
-
-" unite.vim
-let g:unite_enable_start_insert = 1
-let g:unite_update_time = 250
-
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
-nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
-nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
-nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
-nnoremap <silent> <leader>ut :<C-u>Unite tag<CR>
-nnoremap <silent> <leader>uq :<C-u>Unite qf<CR>
-nnoremap <silent> <leader>uh :<C-u>Unite help<CR>
-nnoremap <silent> <leader>ug :<C-u>Unite grep<CR>
-
-function! s:unite_setting()
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-  nmap <buffer> <TAB> <Plug>(unite_loop_cursor_down)
-  nmap <buffer> <S-TAB> <Plug>(unite_loop_cursor_up)
-  nmap <buffer> <C-CR> <Plug>(unite_choose_action)
-  imap <buffer> <ESC> <Plug>(unite_exit)
-  imap <buffer> <TAB> <Plug>(unite_select_next_line)
-  imap <buffer> <S-TAB> <Plug>(unite_select_previous_line)
-  imap <buffer><expr> i unite#smart_map("i", "\<Plug>(unite_insert_leave)\<Plug>(unite_insert_enter)")
-  imap <buffer> <C-CR> <Plug>(unite_choose_action)
-  imap <buffer><expr> <C-CR> unite#do_action("cd")
-  imap <buffer><expr> <C-g> unite#do_action("grep")
-  imap <buffer><expr> <C-p> unite#do_action("preview")
-endfunction
-
-augroup UniteSetting
-  autocmd!
-  autocmd FileType unite call s:unite_setting()
-augroup END
 
 " neocomplcache
+NeoBundle 'Shougo/neocomplcache'
 set completeopt=menuone
+let g:neocomplcache_temporary_dir = expand('~/.vim/.neocomplcache')
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
@@ -88,44 +36,78 @@ inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
-augroup OmnifuncSetting
+" unite.vim
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline', { 'depends' : ["Shougo/unite.vim"] }
+NeoBundle 'tsukkee/unite-tag', { 'depends' : ["Shougo/unite.vim"] }
+NeoBundle 'tsukkee/unite-help', { 'depends' : ["Shougo/unite.vim"] }
+NeoBundle 'sgur/unite-qf', { 'depends' : ["Shougo/unite.vim"] }
+NeoBundle 'hrsh7th/vim-versions', { 'depends' : ["Shougo/unite.vim"] }
+NeoBundle 'osyo-manga/unite-highlight', { 'depends' : ["Shougo/unite.vim"] }
+
+let g:unite_data_directory = expand('~/.vim/.unite')
+let g:unite_enable_start_insert = 1
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+"let g:unite_update_time = 250
+
+let g:unite_matcher_fuzzy_max_input_length = 20
+let g:unite_source_rec_min_cache_files = 5
+let g:unite_source_rec_max_cache_files = 5000
+
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
+
+" unite grep に ag を使う
+if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
+nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
+nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
+nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async<CR>
+nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
+nnoremap <silent> <leader>ug :<C-u>Unite grep<CR>
+nnoremap <silent> <leader>uvs :<C-u>UniteVersions status:!<CR>
+nnoremap <silent> <leader>uvl :<C-u>UniteVersions log:%<CR>
+nnoremap <silent> <leader>uvc :<C-u>UniteVersions changeset<CR>
+
+function! s:unite_setting()
+  imap <silent><buffer> <ESC> <ESC><Plug>(unite_all_exit)
+  imap <silent><buffer> <ESC><ESC> <ESC><Plug>(unite_all_exit)
+  imap <silent><buffer> <TAB> <Plug>(unite_select_next_line)
+  imap <silent><buffer> <S-TAB> <Plug>(unite_select_previous_line)
+  imap <silent><buffer> <C-l> <Plug>(unite_choose_action)
+  imap <silent><buffer><expr> <C-j> unite#do_action("cd")
+  imap <silent><buffer><expr> i unite#smart_map("i", "\<Plug>(unite_insert_leave)\<Plug>(unite_insert_enter)")
+endfunction
+
+augroup UniteSetting
   autocmd!
-  "autocmd FileType ada setlocal omnifunc=adacomplete#Complete
-  "autocmd FileType c setlocal omnifunc=ccomplete#Complete
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType java setlocal omnifunc=javacomplete#Complete
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-  "autocmd FileType sql setlocal omnifunc=sqlcomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  autocmd FileType unite call s:unite_setting()
 augroup END
 
-" quickrun
-let g:quickrun_config = {}
-let g:quickrun_config._ = { 'runner' : 'vimproc' }
+" vim-indeng-guides
+NeoBundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_auto_colors=0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
 
-let s:silent_quickfix = quickrun#outputter#quickfix#new()
+" indentLine
+NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_color_term = 237
 
-function! s:silent_quickfix.init(session)
-  let self.winnr = winnr()
-  call call(quickrun#outputter#quickfix#new().init, [a:session], self)
-endfunction
-
-function! s:silent_quickfix.finish(session)
-  call call(quickrun#outputter#quickfix#new().finish, [a:session], self)
-  cclose
-  while self.winnr != winnr()
-    execute "normal \<C-w>\<C-w>"
-  endwhile
-  doautocmd QuickFixCmdPost
-endfunction
-
-call quickrun#register_outputter('silent_quickfix', s:silent_quickfix)
+" 日本語入力固定モード
+NeoBundle 'fuenor/im_control.vim'
+"let IM_CtrlMode = has('gui_running') ? 4 : 0
+"inoremap <silent> <C-j> <C-^><C-r>=IMState('FixMode')<CR>
 
 " quickhl
+NeoBundle 't9md/vim-quickhl'
 nmap <Space>m <Plug>(quickhl-toggle)
 xmap <Space>m <Plug>(quickhl-toggle)
 nmap <Space>M <Plug>(quickhl-reset)
@@ -133,6 +115,7 @@ xmap <Space>M <Plug>(quickhl-reset)
 nmap <Space>j <Plug>(quickhl-match)
 
 " vim-textmanip
+NeoBundle 't9md/vim-textmanip'
 nmap <M-d> <Plug>(textmanip-duplicate-down)
 xmap <M-d> <Plug>(textmanip-duplicate-down)
 nmap <M-D> <Plug>(textmanip-duplicate-up)
@@ -142,35 +125,132 @@ xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
 xmap <C-l> <Plug>(textmanip-move-right)
 
+NeoBundle 'kana/vim-submode'
+set nowrap
+call submode#enter_with('scroll', 'n', '', '<leader><leader>h', '4zh')
+call submode#enter_with('scroll', 'n', '', '<leader><leader>j', '2<C-e>')
+call submode#enter_with('scroll', 'n', '', '<leader><leader>k', '2<C-y>')
+call submode#enter_with('scroll', 'n', '', '<leader><leader>l', '4zl')
+call submode#map('scroll', 'n', '', 'h', '4zh')
+call submode#map('scroll', 'n', '', 'j', '2<C-e>')
+call submode#map('scroll', 'n', '', 'k', '2<C-y>')
+call submode#map('scroll', 'n', '', 'l', '4zl')
+
+NeoBundle 'yonchu/accelerated-smooth-scroll'
+let g:ac_smooth_scroll_du_sleep_time_msec = 5
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_check_on_open = 0
+let g:syntastic_auto_jump = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_error_symbol = 'E'
+let g:syntastic_warning_symbol = 'W'
+
+" php/twig
+NeoBundle '2072/PHP-Indenting-for-VIm'
+NeoBundle 'beyondwords/vim-twig'
+NeoBundle 'tokutake/twig-indent'
+
+NeoBundle 'shiena/vim-dbgp'
+let g:debuggerMaxDepth = 3
+let g:debuggerDedicatedTab = 0
+let g:debuggerTimeout = 30
+
+" html
+NeoBundle 'othree/html5.vim'
+let g:html_indent_tags = 'dt\|dd'
+let g:html_exclude_tags = ['html']
+
+NeoBundle 'vim-scripts/closetag.vim'
+let g:closetag_html_style = 1 
+
+NeoBundle 'gregsexton/MatchTag'
+
+"css/less
+"NeoBundle 'vim-scripts/Better-CSS-Syntax-for-Vim'
+NeoBundle 'groenewege/vim-less'
+
+"javascript
+NeoBundle 'jelera/vim-javascript-syntax'
+
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+let g:SimpleJsIndenter_BriefMode = 1
+let g:SimpleJsIndenter_CaseIndentLevel = -1
+
+" jscomplete-vim
+NeoBundle 'teramako/jscomplete-vim'
+let g:jscomplete_use = ['dom']
+
+" その他
+NeoBundle 'wombat256.vim'
+NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'thinca/vim-localrc'
+"NeoBundle 'itchyny/lightline.vim'
+
+if !exists('g:neocomplcache_delimiter_patterns')
+  let g:neocomplcache_delimiter_patterns = {}
+endif
+let g:neocomplcache_delimiter_patterns['php'] = ['->', '::', '\']
+
+augroup OmnifuncSetting
+  autocmd!
+  "autocmd FileType ada setlocal omnifunc=adacomplete#Complete
+  "autocmd FileType c setlocal omnifunc=ccomplete#Complete
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS "teramako/jscomplete-vim
+  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+  "autocmd FileType sql setlocal omnifunc=sqlcomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
+
+filetype plugin indent on
+
 syntax on
+
 set background=dark
-colorscheme wombat
-highlight Pmenu guifg=grey70 guibg=grey40
-highlight PmenuSel guifg=lightgreen guibg=grey30 gui=bold
-highlight PmenuSbar guibg=grey40
-highlight PmenuThumb guibg=grey30
-highlight VertSplit guifg=lightyellow guibg=lightyellow
-highlight StatusLine guifg=blue guibg=lightyellow gui=bold
-highlight StatusLineNc guifg=grey50 guibg=lightyellow
-highlight LineNr guifg=grey40 guibg=grey10
-highlight CursorLine guibg=grey10 gui=NONE
-highlight CursorLineNr guifg=green guibg=grey10 gui=bold
-highlight Cursor guifg=black guibg=green
-highlight CursorIM guifg=black guibg=red
-highlight Comment gui=NONE
-highlight String gui=NONE
-highlight MatchParen guifg=magenta guibg=NONE gui=bold
+autocmd ColorScheme * highlight Pmenu guifg=grey70 guibg=grey40
+autocmd ColorScheme * highlight PmenuSel guifg=lightgreen guibg=grey30 gui=bold
+autocmd ColorScheme * highlight PmenuSbar guibg=grey40
+autocmd ColorScheme * highlight PmenuThumb guibg=grey30
+autocmd ColorScheme * highlight VertSplit ctermfg=228 ctermbg=228 guifg=lightyellow guibg=lightyellow
+autocmd ColorScheme * highlight StatusLine ctermfg=20 ctermbg=228 cterm=bold guifg=blue guibg=lightyellow gui=bold
+autocmd ColorScheme * highlight StatusLineNc ctermfg=67 ctermbg=228 guifg=grey50 guibg=lightyellow
+autocmd ColorScheme * highlight LineNr guifg=grey40 guibg=grey10
+autocmd ColorScheme * highlight CursorLine guibg=grey10 gui=NONE
+autocmd ColorScheme * highlight CursorLineNr guifg=green guibg=grey10 gui=bold
+autocmd ColorScheme * highlight Cursor guifg=black guibg=green
+autocmd ColorScheme * highlight CursorIM guifg=black guibg=red
+autocmd ColorScheme * highlight Comment gui=NONE
+autocmd ColorScheme * highlight String gui=NONE
+autocmd ColorScheme * highlight MatchParen guifg=magenta guibg=NONE gui=bold
+autocmd ColorScheme * highlight IndentGuidesOdd  guibg=grey20
+autocmd ColorScheme * highlight IndentGuidesEven guibg=grey20
+colorscheme wombat256mod
 
 " カーソル行のハイライト制御
 set cursorline
-augroup CursorLineModeSetting
+augroup CursorLineSetting
   autocmd!
   " カレントウィンドウでのみハイライトを有効にする
   autocmd WinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
   " 通常モードと挿入モードでハイライトを変更する
-  autocmd InsertEnter * highlight CursorLine guibg=grey20 gui=underline
+  autocmd InsertEnter * highlight CursorLine guibg=grey10 gui=underline
   autocmd InsertLeave * highlight CursorLine guibg=grey10 gui=NONE
+augroup END
+
+" 外部で変更のあったファイルを自動的に読みなおす
+set autoread
+augroup AutoreadChecktime
+  autocmd!
+  autocmd WinEnter * checktime
 augroup END
 
 " 起動時のスプラッシュを表示しない
@@ -179,11 +259,15 @@ set shortmess+=I
 " バックアップファイル、スワップファイルを作らない
 set nobackup
 set noswapfile
+set viminfo+=n~/.vim/.viminfo
 
 " 表示関係
 set number
 set scrolloff=5
+set sidescroll=2
+set sidescrolloff=10
 set display=lastline
+set lazyredraw
 
 " バッファの変更が保存されていなくても移動する
 set hidden
@@ -193,6 +277,7 @@ set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set shiftround
 
 " インデントの設定
 set autoindent
@@ -216,6 +301,9 @@ set clipboard+=unnamed
 set noerrorbells
 set visualbell t_vb=
 
+" 古い正規表現を使う
+set regexpengine=1
+
 " IMEの設定
 set iminsert=0
 set imsearch=0
@@ -225,7 +313,7 @@ set laststatus=2
 set statusline=%t\ %<\(%{expand('%:p:h')}\)\ %m%r%h%w\ %=%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%l,%v][%P]
 
 " コマンドラインの高さ
-set cmdheight=2
+set cmdheight=1
 
 " ファイルフォーマットの設定
 set fileformat=unix
@@ -233,11 +321,20 @@ set fileformats=unix,dos,mac
 
 " エンコーディングの設定
 set encoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp,euc-jp,cp932
+set fileencodings=utf-8,ucs-bom,iso-2022-jp,euc-jp,cp932
+
+" 全角文字の表示幅
 if has('kaoriya')
     set ambiwidth=auto
 else
     set ambiwidth=double
+endif
+
+" テキストの幅
+set textwidth=120
+set formatexpr=0
+if exists('&colorcolumn')
+    set colorcolumn=+1
 endif
 
 " JISに誤認したASCIIファイルのエンコーディングを修正する
@@ -272,31 +369,11 @@ nnoremap k gk
 
 " QuickFix
 command! QfClear call setqflist([]) | doautocmd QuickFixCmdPost
-
-function! s:hier_update_all()
-  call setqflist(filter(copy(getqflist()), 'v:val.valid'))
-  let l:qfcnt = len(getqflist())
-  echohl WarningMsg
-  echo l:qfcnt ? 'QuickFix : '.l:qfcnt.' item(s) are updated' : ''
-  echohl NONE
-  for i in range(1, winnr('$'))
-    HierUpdate
-    execute "normal \<C-w>\<C-w>"
-  endfor
-endfunction
-
-augroup QuickFixSetting
-  autocmd!
-  autocmd QuickFixCmdPost [^l]* call s:hier_update_all()
-augroup END
-
-" 日本語入力固定モード
-let IM_CtrlMode = has('gui_running') ? 4 : 0
-inoremap <silent> <C-j> <C-^><C-r>=IMState('FixMode')<CR>
+command! LocClear call setloclist(0, []) | doautocmd QuickFixCmdPost
 
 " タグファイルの設定
 if has('path_extra')
-  set tags=tags;
+  set tags+=tags;
 endif
 
 " カーソル位置を復元
@@ -309,22 +386,24 @@ augroup RestoreCursorPos
 augroup END
 
 " ウィンドウの大きさを保存、復元
-let g:window_pos_file = expand('~/.vimwinpos')
+if has('gui')
+  let g:window_pos_file = expand('~/.vim/.vimwinpos')
 
-if has('vim_starting') && filereadable(g:window_pos_file)
-  execute 'source '.g:window_pos_file
+  if has('vim_starting') && filereadable(g:window_pos_file)
+    execute 'source '.g:window_pos_file
+  endif
+
+  function! s:save_window_pos()
+    let options = [
+      \ 'set columns='.&columns,
+      \ 'set lines='.&lines,
+      \ 'winpos '.getwinposx().' '.getwinposy(),
+      \ ]
+    call writefile(options, g:window_pos_file)
+  endfunction
+
+  augroup SaveWindowPos
+    autocmd!
+    autocmd VimLeavePre * call s:save_window_pos()
+  augroup END
 endif
-
-function! s:save_window_pos()
-  let options = [
-    \ 'set columns='.&columns,
-    \ 'set lines='.&lines,
-    \ 'winpos '.getwinposx().' '.getwinposy(),
-    \ ]
-  call writefile(options, g:window_pos_file)
-endfunction
-
-augroup SaveWindowPos
-  autocmd!
-  autocmd VimLeavePre * call s:save_window_pos()
-augroup END
