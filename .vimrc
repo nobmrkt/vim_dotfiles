@@ -180,7 +180,7 @@ let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 
 " jscomplete-vim
-NeoBundle 'teramako/jscomplete-vim'
+NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
 " その他
