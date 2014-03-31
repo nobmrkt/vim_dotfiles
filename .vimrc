@@ -38,6 +38,7 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim', { 'depends' : ["Shougo/unite.vim"] }
 NeoBundle 'Shougo/unite-outline', { 'depends' : ["Shougo/unite.vim"] }
 NeoBundle 'tsukkee/unite-tag', { 'depends' : ["Shougo/unite.vim"] }
 NeoBundle 'tsukkee/unite-help', { 'depends' : ["Shougo/unite.vim"] }
