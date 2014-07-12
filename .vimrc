@@ -137,10 +137,6 @@ call submode#map('scroll', 'n', '', 'j', '2<C-e>')
 call submode#map('scroll', 'n', '', 'k', '2<C-y>')
 call submode#map('scroll', 'n', '', 'l', '4zl')
 
-NeoBundle 'yonchu/accelerated-smooth-scroll'
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
-
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 0
 let g:syntastic_auto_jump = 1
