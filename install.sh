@@ -1,4 +1,6 @@
 #!/bin/sh
 
-ln -s "`dirname $0`/.vimrc" ~/.vimrc
-ln -s "`dirname $0`/.vim" ~/.vim
+cd `dirname $0`
+
+ln -s "`pwd`/.vimrc" ~/.vimrc
+ln -s "`pwd`/.vim" ~/.vim
