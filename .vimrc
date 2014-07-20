@@ -271,10 +271,16 @@ set hidden
 
 " タブの設定
 set tabstop=8
-set shiftwidth=4
 set softtabstop=4
+set shiftwidth=4
 set expandtab
 set shiftround
+
+" ファイルタイプ別のタブ設定
+augroup TabSetting
+  autocmd!
+  autocmd FileType ruby,eruby setlocal softtabstop=2 shiftwidth=2
+augroup END
 
 " インデントの設定
 set autoindent
