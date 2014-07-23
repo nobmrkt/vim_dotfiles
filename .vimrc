@@ -61,9 +61,10 @@ let g:unite_source_rec_max_cache_files = 5000
 
 " unite grep に ag を使う
 if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_max_candidates = 500
 endif
 
 nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
@@ -71,7 +72,8 @@ nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
 nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
 nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async<CR>
 nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
-nnoremap <silent> <leader>ug :<C-u>Unite grep<CR>
+nnoremap <silent> <leader>ug :<C-u>Unite grep:.::<CR>
+nnoremap <silent> <leader>ucg :<C-u>Unite grep:.::<CR><C-R><C-W><CR>
 nnoremap <silent> <leader>uvs :<C-u>UniteVersions status:!<CR>
 nnoremap <silent> <leader>uvl :<C-u>UniteVersions log:%<CR>
 nnoremap <silent> <leader>uvc :<C-u>UniteVersions changeset<CR>
