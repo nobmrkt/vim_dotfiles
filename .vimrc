@@ -111,11 +111,14 @@ NeoBundle 'fuenor/im_control.vim'
 
 " quickhl
 NeoBundle 't9md/vim-quickhl'
-nmap <Space>m <Plug>(quickhl-toggle)
-xmap <Space>m <Plug>(quickhl-toggle)
-nmap <Space>M <Plug>(quickhl-reset)
-xmap <Space>M <Plug>(quickhl-reset)
-nmap <Space>j <Plug>(quickhl-match)
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <F9>     <Plug>(quickhl-manual-toggle)
+xmap <F9>     <Plug>(quickhl-manual-toggle)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+nmap <Space>j <Plug>(quickhl-cword-toggle)
+nmap <Space>] <Plug>(quickhl-tag-toggle)
 
 " vim-textmanip
 NeoBundle 't9md/vim-textmanip'
