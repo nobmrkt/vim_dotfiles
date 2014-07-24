@@ -186,6 +186,7 @@ NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
 " その他
+NeoBundle 'CursorLineCurrentWindow'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -237,17 +238,8 @@ autocmd ColorScheme * highlight IndentGuidesOdd  guibg=grey20
 autocmd ColorScheme * highlight IndentGuidesEven guibg=grey20
 colorscheme wombat256mod
 
-" カーソル行のハイライト制御
+" カーソル行のハイライト
 set cursorline
-augroup CursorLineSetting
-  autocmd!
-  " カレントウィンドウでのみハイライトを有効にする
-  autocmd WinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-  " 通常モードと挿入モードでハイライトを変更する
-  autocmd InsertEnter * highlight CursorLine guibg=grey10 gui=underline
-  autocmd InsertLeave * highlight CursorLine guibg=grey10 gui=NONE
-augroup END
 
 " 外部で変更のあったファイルを自動的に読みなおす
 set autoread
