@@ -186,6 +186,7 @@ NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
 " その他
+NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-localrc'
@@ -352,19 +353,6 @@ augroup CorrectFileEncoding
   \ if &l:fileencoding ==# 'iso-2022-jp' && search('[^\x01-\x7e]', 'n') == 0 |
   \   let &l:fileencoding = &encoding |
   \ endif
-augroup END
-
-" ファイルの保存時にディレクトリが存在しなければ作成する
-function! s:auto_mkdir(dir, force)
-  if !isdirectory(a:dir) && (a:force ||
-  \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-  endif
-endfunction
-
-augroup AutoMkdir
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 augroup END
 
 " バッファを閉じる
