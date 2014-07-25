@@ -185,6 +185,12 @@ let g:SimpleJsIndenter_CaseIndentLevel = -1
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
+" wildfire
+NeoBundle 'gcmt/wildfire.vim'
+map <PageUp> <Plug>(wildfire-fuel)
+vmap <PageDown> <Plug>(wildfire-water)
+let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
+
 " その他
 NeoBundle 'restore_view.vim'
 NeoBundle 'CursorLineCurrentWindow'
