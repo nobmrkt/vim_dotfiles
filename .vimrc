@@ -17,6 +17,11 @@ endif
 " vimproc
 NeoBundle 'Shougo/vimproc'
 
+" vimfiler
+NeoBundle 'Shougo/vimfiler.vim'
+let g:vimfiler_as_default_explorer = 1
+nnoremap <silent> <Leader>f :<C-u>VimFilerSplit -winwidth=35 -simple -no-quit<CR>
+
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
 set completeopt=menuone
