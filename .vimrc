@@ -360,8 +360,8 @@ augroup CorrectFileEncoding
 augroup END
 
 " バッファを閉じる
-nnoremap <silent> <Leader>q :<C-u>bdelete<CR>
-nnoremap <silent> <Leader>Q :<C-u>bdelete!<CR>
+nnoremap <silent> <Leader>d :<C-u>bdelete<CR>
+nnoremap <silent> <Leader>D :<C-u>bdelete!<CR>
 
 " カーソル移動
 nnoremap j gj
