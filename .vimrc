@@ -109,6 +109,9 @@ let g:indent_guides_guide_size=1
 NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_color_term = 237
 
+" vim-signify
+NeoBundle 'mhinz/vim-signify'
+
 " 日本語入力固定モード
 NeoBundle 'fuenor/im_control.vim'
 "let IM_CtrlMode = has('gui_running') ? 4 : 0
