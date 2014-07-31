@@ -199,9 +199,6 @@ map <PageUp> <Plug>(wildfire-fuel)
 vmap <PageDown> <Plug>(wildfire-water)
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
-" ctrlsf
-NeoBundle 'dyng/ctrlsf.vim'
-
 " その他
 NeoBundle 'restore_view.vim'
 NeoBundle 'CursorLineCurrentWindow'
