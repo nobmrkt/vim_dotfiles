@@ -258,9 +258,10 @@ set cursorline
 
 " 外部で変更のあったファイルを自動的に読みなおす
 set autoread
+set updatetime=500
 augroup AutoreadChecktime
   autocmd!
-  autocmd WinEnter * checktime
+  autocmd BufEnter,WinEnter,CursorHold * checktime
 augroup END
 
 " 起動時のスプラッシュを表示しない
