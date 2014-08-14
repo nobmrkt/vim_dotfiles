@@ -200,7 +200,6 @@ vmap <PageDown> <Plug>(wildfire-water)
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
 " その他
-NeoBundle 'restore_view.vim'
 NeoBundle 'CursorLineCurrentWindow'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
@@ -379,6 +378,15 @@ command! LocClear call setloclist(0, []) | doautocmd QuickFixCmdPost
 if has('path_extra')
   set tags+=tags;
 endif
+
+" カーソル位置を復元
+augroup RestoreCursorPos
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+augroup END
 
 " ウィンドウの大きさを保存、復元
 if has('gui')
