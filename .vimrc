@@ -193,6 +193,12 @@ let g:SimpleJsIndenter_CaseIndentLevel = -1
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
+NeoBundle "osyo-manga/vim-anzu"
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
 " wildfire
 NeoBundle 'gcmt/wildfire.vim'
 map <PageUp> <Plug>(wildfire-fuel)
