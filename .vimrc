@@ -193,6 +193,7 @@ let g:SimpleJsIndenter_CaseIndentLevel = -1
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
+" vim-anzu
 NeoBundle "osyo-manga/vim-anzu"
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
