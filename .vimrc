@@ -200,6 +200,10 @@ nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
+" switch.vim
+NeoBundle "AndrewRadev/switch.vim"
+nnoremap <silent> - :<C-u>Switch<CR>
+
 " wildfire
 NeoBundle 'gcmt/wildfire.vim'
 map <PageUp> <Plug>(wildfire-fuel)
