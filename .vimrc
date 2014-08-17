@@ -350,6 +350,18 @@ set fileformats=unix,dos,mac
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp,euc-jp,cp932
 
+" markdown内のプログラミング言語をハイライト
+let g:markdown_fenced_languages = [
+\  'ruby',
+\  'python',
+\  'php',
+\  'javascript',
+\  'js=javascript',
+\  'json=javascript',
+\  'html',
+\  'css',
+\]
+
 " 全角文字の表示幅
 if has('kaoriya')
     set ambiwidth=auto
