@@ -211,12 +211,10 @@ vmap <PageDown> <Plug>(wildfire-water)
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
 " その他
-NeoBundle 'CursorLineCurrentWindow'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-localrc'
-NeoBundle 'itchyny/lightline.vim'
 
 if !exists('g:neocomplcache_delimiter_patterns')
   let g:neocomplcache_delimiter_patterns = {}
@@ -244,27 +242,15 @@ filetype plugin indent on
 syntax on
 
 set background=dark
-autocmd ColorScheme * highlight Pmenu guifg=grey70 guibg=grey40
-autocmd ColorScheme * highlight PmenuSel guifg=lightgreen guibg=grey30 gui=bold
-autocmd ColorScheme * highlight PmenuSbar guibg=grey40
-autocmd ColorScheme * highlight PmenuThumb guibg=grey30
-autocmd ColorScheme * highlight VertSplit ctermfg=228 ctermbg=228 guifg=lightyellow guibg=lightyellow
-autocmd ColorScheme * highlight StatusLine ctermfg=20 ctermbg=228 cterm=bold guifg=blue guibg=lightyellow gui=bold
-autocmd ColorScheme * highlight StatusLineNc ctermfg=67 ctermbg=228 guifg=grey50 guibg=lightyellow
-autocmd ColorScheme * highlight LineNr guifg=grey40 guibg=grey10
-autocmd ColorScheme * highlight CursorLine guibg=grey10 gui=NONE
-autocmd ColorScheme * highlight CursorLineNr guifg=green guibg=grey10 gui=bold
-autocmd ColorScheme * highlight Cursor guifg=black guibg=green
-autocmd ColorScheme * highlight CursorIM guifg=black guibg=red
-autocmd ColorScheme * highlight Comment gui=NONE
-autocmd ColorScheme * highlight String gui=NONE
-autocmd ColorScheme * highlight MatchParen guifg=magenta guibg=NONE gui=bold
-autocmd ColorScheme * highlight IndentGuidesOdd  guibg=grey20
-autocmd ColorScheme * highlight IndentGuidesEven guibg=grey20
+augroup CustomColorScheme
+  autocmd!
+  autocmd InsertEnter             * highlight StatusLine   ctermfg=21  ctermbg=226  cterm=BOLD
+  autocmd InsertLeave,ColorScheme * highlight StatusLine   ctermfg=226 ctermbg=33   cterm=NONE
+  autocmd ColorScheme             * highlight StatusLineNC ctermfg=240 ctermbg=253
+  autocmd ColorScheme             * highlight VertSplit    ctermfg=253 ctermbg=253
+  autocmd ColorScheme             * highlight ColorColumn  ctermbg=16
+augroup END
 colorscheme wombat256mod
-
-" カーソル行のハイライト
-set cursorline
 
 " 外部で変更のあったファイルを自動的に読みなおす
 set autoread
@@ -336,8 +322,23 @@ set iminsert=0
 set imsearch=0
 
 " ステータス行の設定
+set noshowmode
 set laststatus=2
-set statusline=%t\ %<\(%{expand('%:p:h')}\)\ %m%r%h%w\ %=%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}[%l,%v][%P]
+set statusline=%{&ft=='help'?'HELP':get(g:mode_map,mode(),'?')}\ %{&readonly?'RO':&modified?'+':'-'}
+set statusline+=\ %t\ \(%<%{expand('%:h')!=''?expand('%:h'):'.'}\)
+set statusline+=\ %=%{&ft!=''?'['.&ft.']':''}[%{&fenc!=''?&fenc:&enc}][%{&ff}][%3p%%][%3LL]
+let g:mode_map = {
+\   'n' : 'NORMAL',
+\   'i' : 'INSERT',
+\   'R' : 'REPLACE',
+\   'v' : 'VISUAL',
+\   'V' : 'V-LINE',
+\   'c' : 'COMMAND',
+\   "\<C-v>": 'V-BLOCK',
+\   's' : 'SELECT',
+\   'S' : 'S-LINE',
+\   "\<C-s>": 'S-BLOCK',
+\ }
 
 " コマンドラインの高さ
 set cmdheight=1
