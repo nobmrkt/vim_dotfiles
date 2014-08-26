@@ -326,7 +326,7 @@ set noshowmode
 set laststatus=2
 set statusline=%{&ft=='help'?'HELP':get(g:mode_map,mode(),'?')}\ %{&readonly?'RO':&modified?'+':'-'}
 set statusline+=\ %t\ \(%<%{expand('%:h')!=''?expand('%:h'):'.'}\)
-set statusline+=\ %=%{&ft!=''?'['.&ft.']':''}[%{&fenc!=''?&fenc:&enc}][%{&ff}][%3p%%][%3LL]
+set statusline+=\ %=%y[%{&fenc!=''?&fenc:&enc}][%{&ff}][%3p%%][%3LL]
 let g:mode_map = {
 \   'n' : 'NORMAL',
 \   'i' : 'INSERT',
