@@ -244,11 +244,12 @@ syntax on
 set background=dark
 augroup CustomColorScheme
   autocmd!
-  autocmd InsertEnter             * highlight StatusLine   ctermfg=21  ctermbg=226  cterm=BOLD
-  autocmd InsertLeave,ColorScheme * highlight StatusLine   ctermfg=226 ctermbg=33   cterm=NONE
-  autocmd ColorScheme             * highlight StatusLineNC ctermfg=240 ctermbg=253
-  autocmd ColorScheme             * highlight VertSplit    ctermfg=253 ctermbg=253
-  autocmd ColorScheme             * highlight ColorColumn  ctermbg=16
+  autocmd InsertEnter             * highlight StatusLine   ctermfg=21   ctermbg=226  cterm=BOLD
+  autocmd InsertLeave,ColorScheme * highlight StatusLine   ctermfg=226  ctermbg=33   cterm=NONE
+  autocmd ColorScheme             * highlight StatusLineNC ctermfg=240  ctermbg=253
+  autocmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
+  autocmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
+  autocmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
 augroup END
 colorscheme wombat256mod
 
