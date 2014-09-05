@@ -107,6 +107,8 @@ let g:indent_guides_guide_size=1
 
 " indentLine
 NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_indentLevel = 20
 let g:indentLine_color_term = 237
 
 " vim-signify
