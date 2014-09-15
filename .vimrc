@@ -245,6 +245,7 @@ augroup CustomColorScheme
   autocmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
   autocmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
   autocmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
+  autocmd ColorScheme             * highlight NonText      ctermfg=237  ctermbg=NONE
 augroup END
 colorscheme wombat256mod
 
@@ -300,6 +301,10 @@ set nocindent
 " 検索、補完時にスマートケースを有効にする
 set ignorecase
 set smartcase
+
+" 不可視文字の表示
+set list
+set listchars=tab:▸\ ,eol:↲,extends:»,precedes:«
 
 " 検索結果のハイライト
 set hlsearch
