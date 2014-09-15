@@ -286,7 +286,11 @@ set shiftround
 augroup TabSetting
   autocmd!
   autocmd FileType ruby,eruby setlocal softtabstop=2 shiftwidth=2
+  autocmd FileType vim setlocal softtabstop=2 shiftwidth=2
 augroup END
+
+" Vim script の継続行のインデントを無効にする
+let g:vim_indent_cont = 0
 
 " インデントの設定
 set autoindent
@@ -349,28 +353,28 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp,euc-jp,cp932
 
 " markdown内のプログラミング言語をハイライト
 let g:markdown_fenced_languages = [
-\  'ruby',
-\  'python',
-\  'php',
-\  'javascript',
-\  'js=javascript',
-\  'json=javascript',
-\  'html',
-\  'css',
-\]
+\   'ruby',
+\   'python',
+\   'php',
+\   'javascript',
+\   'js=javascript',
+\   'json=javascript',
+\   'html',
+\   'css',
+\ ]
 
 " 全角文字の表示幅
 if has('kaoriya')
-    set ambiwidth=auto
+  set ambiwidth=auto
 else
-    set ambiwidth=double
+  set ambiwidth=double
 endif
 
 " テキストの幅
 set textwidth=120
 set formatexpr=0
 if exists('&colorcolumn')
-    set colorcolumn=+1
+  set colorcolumn=+1
 endif
 
 " JISに誤認したASCIIファイルのエンコーディングを修正する
@@ -403,9 +407,9 @@ endif
 augroup RestoreCursorPos
   autocmd!
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
 augroup END
 
 " ウィンドウの大きさを保存、復元
@@ -418,10 +422,10 @@ if has('gui')
 
   function! s:save_window_pos()
     let options = [
-      \ 'set columns='.&columns,
-      \ 'set lines='.&lines,
-      \ 'winpos '.getwinposx().' '.getwinposy(),
-      \ ]
+    \   'set columns='.&columns,
+    \   'set lines='.&lines,
+    \   'winpos '.getwinposx().' '.getwinposy(),
+    \ ]
     call writefile(options, g:window_pos_file)
   endfunction
 
