@@ -102,7 +102,7 @@ augroup END
 NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_indentLevel = 20
-let g:indentLine_color_term = 237
+let g:indentLine_color_term = 240
 
 " vim-signify
 NeoBundle 'mhinz/vim-signify'
@@ -245,7 +245,7 @@ augroup CustomColorScheme
   autocmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
   autocmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
   autocmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
-  autocmd ColorScheme             * highlight NonText      ctermfg=237  ctermbg=NONE
+  autocmd ColorScheme             * highlight NonText      ctermfg=240  ctermbg=NONE
 augroup END
 colorscheme wombat256mod
 
