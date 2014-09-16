@@ -102,7 +102,7 @@ augroup END
 NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_indentLevel = 20
-let g:indentLine_color_term = 240
+let g:indentLine_color_term = 237
 
 " vim-signify
 NeoBundle 'mhinz/vim-signify'
@@ -245,7 +245,8 @@ augroup CustomColorScheme
   autocmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
   autocmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
   autocmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
-  autocmd ColorScheme             * highlight NonText      ctermfg=240  ctermbg=NONE
+  autocmd ColorScheme             * highlight NonText      ctermfg=245  ctermbg=NONE
+  autocmd ColorScheme             * highlight SpecialKey   ctermfg=16   ctermbg=235
 augroup END
 colorscheme wombat256mod
 
@@ -304,7 +305,7 @@ set smartcase
 
 " 不可視文字の表示
 set list
-set listchars=tab:▸\ ,eol:↲,extends:»,precedes:«
+set listchars=tab:›-,eol:↲,extends:»,precedes:«
 
 " 検索結果のハイライト
 set hlsearch
