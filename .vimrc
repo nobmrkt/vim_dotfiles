@@ -1,4 +1,4 @@
-﻿scriptencoding utf-8
+scriptencoding utf-8
 
 let mapleader = ";"
 source $VIMRUNTIME/macros/matchit.vim
@@ -236,6 +236,8 @@ filetype plugin indent on
 
 syntax on
 
+set term=xterm-256color
+
 set background=dark
 augroup CustomColorScheme
   autocmd!
@@ -304,8 +306,8 @@ set ignorecase
 set smartcase
 
 " 不可視文字の表示
-set list
-set listchars=tab:›-,eol:↲,extends:»,precedes:«
+"set list
+"set listchars=tab:›-,eol:↲,extends:»,precedes:«
 
 " 検索結果のハイライト
 set hlsearch
