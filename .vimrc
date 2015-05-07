@@ -214,6 +214,7 @@ NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-localrc'
+NeoBundle 'cohama/lexima.vim'
 
 if !exists('g:neocomplcache_delimiter_patterns')
   let g:neocomplcache_delimiter_patterns = {}
