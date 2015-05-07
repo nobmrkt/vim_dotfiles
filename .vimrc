@@ -163,6 +163,9 @@ let g:debuggerMaxDepth = 3
 let g:debuggerDedicatedTab = 0
 let g:debuggerTimeout = 30
 
+" python
+NeoBundle 'hynek/vim-python-pep8-indent'
+
 " html
 NeoBundle 'othree/html5.vim'
 let g:html_indent_tags = 'dt\|dd'
