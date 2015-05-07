@@ -205,6 +205,10 @@ map <PageUp> <Plug>(wildfire-fuel)
 vmap <PageDown> <Plug>(wildfire-water)
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
+NeoBundle 'tyru/caw.vim'
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
 " その他
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'wombat256.vim'
