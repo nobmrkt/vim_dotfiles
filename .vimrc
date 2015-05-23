@@ -1,3 +1,4 @@
+set encoding=utf-8
 scriptencoding utf-8
 
 " Note: Skip initialization for vim-tiny or vim-small
@@ -379,7 +380,6 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 " エンコーディングの設定
-set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,iso-2022-jp,euc-jp,cp932
 
 " markdown内のプログラミング言語をハイライト
