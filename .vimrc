@@ -1,18 +1,20 @@
 scriptencoding utf-8
 
+" Note: Skip initialization for vim-tiny or vim-small
+if !1 | finish | endif
+
 let mapleader = ";"
 source $VIMRUNTIME/macros/matchit.vim
 
 " NeoBundle
 if has('vim_starting')
-  if isdirectory(expand('~/vimfiles/'))
-    set runtimepath+=~/vimfiles/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/vimfiles/bundle/'))
-  elseif isdirectory(expand('~/.vim/'))
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle/'))
-  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " vimproc
 NeoBundle 'Shougo/vimproc'
@@ -134,16 +136,16 @@ xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
 xmap <C-l> <Plug>(textmanip-move-right)
 
-NeoBundle 'kana/vim-submode'
-set nowrap
-call submode#enter_with('scroll', 'n', '', '<leader><leader>h', '4zh')
-call submode#enter_with('scroll', 'n', '', '<leader><leader>j', '2<C-e>')
-call submode#enter_with('scroll', 'n', '', '<leader><leader>k', '2<C-y>')
-call submode#enter_with('scroll', 'n', '', '<leader><leader>l', '4zl')
-call submode#map('scroll', 'n', '', 'h', '4zh')
-call submode#map('scroll', 'n', '', 'j', '2<C-e>')
-call submode#map('scroll', 'n', '', 'k', '2<C-y>')
-call submode#map('scroll', 'n', '', 'l', '4zl')
+"NeoBundle 'kana/vim-submode'
+"set nowrap
+"call submode#enter_with('scroll', 'n', '', '<leader><leader>h', '4zh')
+"call submode#enter_with('scroll', 'n', '', '<leader><leader>j', '2<C-e>')
+"call submode#enter_with('scroll', 'n', '', '<leader><leader>k', '2<C-y>')
+"call submode#enter_with('scroll', 'n', '', '<leader><leader>l', '4zl')
+"call submode#map('scroll', 'n', '', 'h', '4zh')
+"call submode#map('scroll', 'n', '', 'j', '2<C-e>')
+"call submode#map('scroll', 'n', '', 'k', '2<C-y>')
+"call submode#map('scroll', 'n', '', 'l', '4zl')
 
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 0
@@ -239,6 +241,8 @@ augroup OmnifuncSetting
   "autocmd FileType sql setlocal omnifunc=sqlcomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
+
+call neobundle#end()
 
 filetype plugin indent on
 
