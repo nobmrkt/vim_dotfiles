@@ -193,12 +193,25 @@ let g:SimpleJsIndenter_CaseIndentLevel = -1
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 let g:jscomplete_use = ['dom']
 
+" incsearch.vim
+NeoBundle "haya14busa/incsearch.vim"
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
 " vim-anzu
 NeoBundle "osyo-manga/vim-anzu"
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
+nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+nmap * <Plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)
+nmap # <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)
 
 " switch.vim
 NeoBundle "AndrewRadev/switch.vim"
