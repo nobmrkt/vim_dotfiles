@@ -209,7 +209,16 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+\   'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin'  : 'make -f make_cygwin.mak',
+\     'mac'     : 'make -f make_mac.mak',
+\     'linux'   : 'make',
+\     'unix'    : 'gmake',
+\   },
+\ }
+
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/neocomplcache'
 
