@@ -18,7 +18,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete.vim'
 
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
@@ -69,7 +70,7 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-localrc'
-NeoBundle 'cohama/lexima.vim'
+"NeoBundle 'cohama/lexima.vim'
 NeoBundle 'wombat256.vim'
 
 augroup OmnifuncSetting
@@ -92,6 +93,30 @@ filetype plugin indent on
 if neobundle#tap('vimfiler.vim')
   let g:vimfiler_as_default_explorer = 1
   nnoremap <silent> <Leader>f :<C-u>VimFilerSplit -winwidth=35 -simple -no-quit<CR>
+
+  call neobundle#untap()
+endif
+
+if neobundle#tap('neocomplete.vim')
+  let g:neocomplete#data_directory = expand('~/.vim/.neocomplete')
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_camel_case = 1
+
+  if !exists('g:neocomplete#delimiter_patterns')
+    let g:neocomplete#delimiter_patterns = {}
+  endif
+  let g:neocomplete#delimiter_patterns['php'] = ['->', '::', '\']
+
+  set completeopt=menuone
+  inoremap <expr><C-n> (pumvisible() ? "" : neocomplete#start_manual_complete()) . "\<C-n>"
+  inoremap <expr><C-p> (pumvisible() ? "" : neocomplete#start_manual_complete()) . "\<C-p>"
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+  inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
+  inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
+  inoremap <expr><C-y> neocomplete#close_popup()
+  inoremap <expr><C-e> neocomplete#cancel_popup()
 
   call neobundle#untap()
 endif
