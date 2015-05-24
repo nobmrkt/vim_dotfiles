@@ -243,7 +243,7 @@ NeoBundle 'groenewege/vim-less'
 
 "javascript
 NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'jason0x43/vim-js-indent'
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 
 " php/twig
@@ -468,13 +468,6 @@ endif
 
 if neobundle#tap('closetag.vim')
   let g:closetag_html_style = 1 
-
-  call neobundle#untap()
-endif
-
-if neobundle#tap('simple-javascript-indenter')
-  let g:SimpleJsIndenter_BriefMode = 1
-  let g:SimpleJsIndenter_CaseIndentLevel = -1
 
   call neobundle#untap()
 endif
