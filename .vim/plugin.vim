@@ -114,7 +114,7 @@ if neobundle#tap('neocomplete.vim')
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
   inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
   inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
-  inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
+  inoremap <expr><CR> neocomplete#close_popup() . "\<CR>"
   inoremap <expr><C-y> neocomplete#close_popup()
   inoremap <expr><C-e> neocomplete#cancel_popup()
 
