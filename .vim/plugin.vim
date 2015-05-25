@@ -150,6 +150,7 @@ endif
 if neobundle#tap('unite.vim')
   let g:unite_data_directory = expand('~/.vim/.unite')
   let g:unite_enable_start_insert = 1
+  let g:unite_enable_auto_select = 0
   let g:unite_enable_ignore_case = 1
   let g:unite_enable_smart_case = 1
   "let g:unite_update_time = 250
