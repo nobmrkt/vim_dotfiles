@@ -152,14 +152,6 @@ if neobundle#tap('unite.vim')
   let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
 
-  call unite#custom#profile('default', 'context', {'prompt': '>', 'no_split': 1})
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_selecta'])
-
-  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
-  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
-  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
-
   " unite grep に ag を使う
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
@@ -167,7 +159,29 @@ if neobundle#tap('unite.vim')
     let g:unite_source_grep_recursive_opt = ''
     let g:unite_source_grep_max_candidates = 500
   endif
+
+  call unite#custom#profile('default', 'context', {'prompt': '>'})
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_selecta'])
+
+  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
+  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
+  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
   nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
+
+  function! s:unite_setting()
+    nmap <silent><buffer> <ESC> q
+    imap <silent><buffer> <ESC> <ESC>q
+    imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
+    imap <silent><buffer> <TAB> <Plug>(unite_select_next_line)
+    imap <silent><buffer> <S-TAB> <Plug>(unite_select_previous_line)
+  endfunction
+
+  augroup UniteSetting
+    autocmd!
+    autocmd FileType unite call s:unite_setting()
+  augroup END
 
   call neobundle#untap()
 endif
