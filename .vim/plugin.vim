@@ -151,16 +151,14 @@ if neobundle#tap('unite.vim')
   let g:unite_data_directory = expand('~/.vim/.unite')
   let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
-  let g:unite_enable_ignore_case = 1
-  let g:unite_enable_smart_case = 1
-  "let g:unite_update_time = 250
 
-  let g:unite_matcher_fuzzy_max_input_length = 20
-  let g:unite_source_rec_min_cache_files = 5
-  let g:unite_source_rec_max_cache_files = 5000
+  call unite#custom#profile('default', 'context', {'prompt': '>', 'no_split': 1})
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_selecta'])
 
-  "call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  "call unite#filters#sorter_default#use(['sorter_rank'])
+  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
+  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
+  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
 
   " unite grep に ag を使う
   if executable('ag')
@@ -169,30 +167,7 @@ if neobundle#tap('unite.vim')
     let g:unite_source_grep_recursive_opt = ''
     let g:unite_source_grep_max_candidates = 500
   endif
-
-  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
-  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
-  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async<CR>
-  nnoremap <silent> <leader>ug :<C-u>Unite grep:.::<CR>
-  nnoremap <silent> <leader>ucg :<C-u>Unite grep:.::<CR><C-R><C-W><CR>
-  nnoremap <silent> <leader>uvs :<C-u>UniteVersions status:!<CR>
-  nnoremap <silent> <leader>uvl :<C-u>UniteVersions log:%<CR>
-  nnoremap <silent> <leader>uvc :<C-u>UniteVersions changeset<CR>
-
-  function! s:unite_setting()
-    imap <silent><buffer> <ESC> <ESC><Plug>(unite_all_exit)
-    imap <silent><buffer> <ESC><ESC> <ESC><Plug>(unite_all_exit)
-    imap <silent><buffer> <TAB> <Plug>(unite_select_next_line)
-    imap <silent><buffer> <S-TAB> <Plug>(unite_select_previous_line)
-    imap <silent><buffer> <C-l> <Plug>(unite_choose_action)
-    imap <silent><buffer><expr> <C-j> unite#do_action("cd")
-    imap <silent><buffer><expr> i unite#smart_map("i", "\<Plug>(unite_insert_leave)\<Plug>(unite_insert_enter)")
-  endfunction
-
-  augroup UniteSetting
-    autocmd!
-    autocmd FileType unite call s:unite_setting()
-  augroup END
+  nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
 
   call neobundle#untap()
 endif
@@ -205,6 +180,14 @@ endif
 
 if neobundle#tap('unite-outline')
   nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
+
+  call neobundle#untap()
+endif
+
+if neobundle#tap('vim-versions')
+  nnoremap <silent> <leader>uvs :<C-u>UniteVersions status:!<CR>
+  nnoremap <silent> <leader>uvl :<C-u>UniteVersions log:%<CR>
+  nnoremap <silent> <leader>uvc :<C-u>UniteVersions changeset<CR>
 
   call neobundle#untap()
 endif
