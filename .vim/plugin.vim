@@ -160,9 +160,14 @@ if neobundle#tap('unite.vim')
     let g:unite_source_grep_max_candidates = 500
   endif
 
-  call unite#custom#profile('default', 'context', {'prompt': '>'})
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_selecta'])
+  call unite#custom#profile('default', 'context', { 'prompt' : '>', 'vertical_preview': 1 })
+
+  call unite#custom#source('file_rec,file_rec/async,file_rec/git', 'matchers', [
+  \	  'converter_relative_word',
+  \	  'matcher_fuzzy',
+  \	  'matcher_project_ignore_files'
+  \	])
+  call unite#custom#source('file_rec,file_rec/async,file_rec/git', 'sorters', ['sorter_selecta'])
 
   nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
   nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
@@ -170,8 +175,8 @@ if neobundle#tap('unite.vim')
   nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
 
   function! s:unite_setting()
-    nmap <silent><buffer> <ESC> q
-    imap <silent><buffer> <ESC> <ESC>q
+    nmap <silent><buffer> <ESC> Q
+    imap <silent><buffer> <ESC> <ESC>Q
     imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
     imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
     imap <silent><buffer> <TAB> <Plug>(unite_select_next_line)
@@ -187,7 +192,11 @@ if neobundle#tap('unite.vim')
 endif
 
 if neobundle#tap('neomru.vim')
+  call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
+  call unite#custom#source('file_mru', 'sorters', ['sorter_selecta'])
+
   nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
+  nnoremap <silent> <leader>uM :<C-u>UniteWithCurrentDir -buffer-name=files file_mru<CR>
 
   call neobundle#untap()
 endif
