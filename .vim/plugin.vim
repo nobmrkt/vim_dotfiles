@@ -88,6 +88,10 @@ call neobundle#end()
 
 filetype plugin indent on
 
+if neobundle#exists_not_installed_bundles()
+  NeoBundleInstall
+endif
+
 " Plugin settings
 
 if neobundle#tap('vimfiler.vim')
