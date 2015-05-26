@@ -216,6 +216,12 @@ if neobundle#tap('unite-outline')
   call neobundle#untap()
 endif
 
+if neobundle#tap('unite-help')
+  nnoremap <silent> <Leader>uh :<C-u>Unite help<CR>
+
+  call neobundle#untap()
+endif
+
 if neobundle#tap('vim-versions')
   nnoremap <silent> <leader>uvs :<C-u>UniteVersions status:!<CR>
   nnoremap <silent> <leader>uvl :<C-u>UniteVersions log:%<CR>
