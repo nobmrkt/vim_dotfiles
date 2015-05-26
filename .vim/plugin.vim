@@ -1,3 +1,8 @@
+" neobundle.vim のインストールチェック
+if !isdirectory(expand('~/.vim/bundle/neobundle.vim'))
+  finish
+endif
+
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
