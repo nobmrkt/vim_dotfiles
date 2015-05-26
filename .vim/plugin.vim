@@ -149,30 +149,12 @@ endif
 
 if neobundle#tap('unite.vim')
   let g:unite_data_directory = expand('~/.vim/.unite')
-  let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
 
-  " unite grep に ag を使う
-  if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_grep_max_candidates = 500
-  endif
-
-  call unite#custom#profile('default', 'context', { 'prompt' : '>', 'vertical_preview': 1 })
-
-  call unite#custom#source('file_rec,file_rec/async,file_rec/git', 'matchers', [
-  \	  'converter_relative_word',
-  \	  'matcher_fuzzy',
-  \	  'matcher_project_ignore_files'
-  \	])
-  call unite#custom#source('file_rec,file_rec/async,file_rec/git', 'sorters', ['sorter_selecta'])
-
-  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
-  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
-  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
-  nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
+  call unite#custom#profile('default', 'context', {
+  \   'start_insert': 1,
+  \   'prompt': '>'
+  \ })
 
   function! s:unite_setting()
     nmap <silent><buffer> <ESC> Q
@@ -188,13 +170,36 @@ if neobundle#tap('unite.vim')
     autocmd FileType unite call s:unite_setting()
   augroup END
 
+  " buffer
+  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
+
+  " file file/new
+  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
+
+  " file_rec file_rec/async file_rec/git
+  let s:source_rec = 'file_rec,file_rec/async,file_rec/git'
+  call unite#custom#source(s:source_rec, 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
+  call unite#custom#source(s:source_rec, 'sorters', ['sorter_selecta'])
+  if executable('ag')
+    let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
+  endif
+  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
+
+  " grep
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_grep_max_candidates = 500
+  endif
+  nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
+
   call neobundle#untap()
 endif
 
 if neobundle#tap('neomru.vim')
   call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
   call unite#custom#source('file_mru', 'sorters', ['sorter_selecta'])
-
   nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
   nnoremap <silent> <leader>uM :<C-u>UniteWithCurrentDir -buffer-name=files file_mru<CR>
 
