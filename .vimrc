@@ -23,7 +23,7 @@ set shortmess+=I
 " バックアップファイル、スワップファイルを作らない
 set nobackup
 set noswapfile
-set viminfo+=n~/.vim/.viminfo
+set viminfo+=n~/.vim/tmp/viminfo
 
 " 表示関係
 set number
@@ -156,7 +156,7 @@ augroup END
 
 " ウィンドウの大きさを保存、復元
 if has('gui')
-  let g:window_pos_file = expand('~/.vim/.vimwinpos')
+  let g:window_pos_file = expand('~/.vim/tmp/vimwinpos')
 
   if has('vim_starting') && filereadable(g:window_pos_file)
     execute 'source '.g:window_pos_file

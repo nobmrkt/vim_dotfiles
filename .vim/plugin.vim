@@ -102,7 +102,7 @@ if neobundle#tap('vimfiler.vim')
 endif
 
 if neobundle#tap('neocomplete.vim')
-  let g:neocomplete#data_directory = expand('~/.vim/.neocomplete')
+  let g:neocomplete#data_directory = expand('~/.vim/tmp/neocomplete')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_camel_case = 1
 
@@ -126,7 +126,7 @@ if neobundle#tap('neocomplete.vim')
 endif
 
 if neobundle#tap('neocomplcache')
-  let g:neocomplcache_temporary_dir = expand('~/.vim/.neocomplcache')
+  let g:neocomplcache_temporary_dir = expand('~/.vim/tmp/neocomplcache')
   let g:neocomplcache_enable_at_startup = 1
   let g:neocomplcache_enable_camel_case_completion = 1
   let g:neocomplcache_enable_underbar_completion = 1
@@ -152,7 +152,7 @@ if neobundle#tap('neocomplcache')
 endif
 
 if neobundle#tap('unite.vim')
-  let g:unite_data_directory = expand('~/.vim/.unite')
+  let g:unite_data_directory = expand('~/.vim/tmp/unite')
   let g:unite_enable_auto_select = 0
 
   call unite#custom#profile('default', 'context', {

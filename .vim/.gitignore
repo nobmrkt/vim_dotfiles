@@ -1,5 +1,2 @@
 bundle/
-.viminfo
-.vimwinpos
-.neocomplcache
-.unite
+tmp/
