@@ -101,7 +101,8 @@ endif
 
 if neobundle#tap('vimfiler.vim')
   let g:vimfiler_as_default_explorer = 1
-  nnoremap <silent> <Leader>f :<C-u>VimFilerSplit -winwidth=35 -simple -no-quit<CR>
+  let g:vimfiler_data_directory = expand('~/.vim/tmp/vimfiler')
+  nnoremap <silent> <Leader>f :<C-u>VimFiler -status<CR>
 
   call neobundle#untap()
 endif
