@@ -193,7 +193,7 @@ if neobundle#tap('unite.vim')
   if executable('ag')
     let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
   endif
-  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=files file_rec/async:!<CR>
+  nnoremap <silent> <leader>ur :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async:!<CR>
 
   " grep
   if executable('ag')
