@@ -208,6 +208,9 @@ if neobundle#tap('unite.vim')
 endif
 
 if neobundle#tap('neomru.vim')
+  let g:neomru#file_mru_path = expand('~/.vim/tmp/neomru/file')
+  let g:neomru#directory_mru_path = expand('~/.vim/tmp/neomru/directory')
+
   call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
   call unite#custom#source('file_mru', 'sorters', ['sorter_selecta'])
   nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
