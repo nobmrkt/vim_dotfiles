@@ -78,18 +78,8 @@ NeoBundle 'thinca/vim-localrc'
 "NeoBundle 'cohama/lexima.vim'
 NeoBundle 'wombat256.vim'
 
-augroup OmnifuncSetting
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType java setlocal omnifunc=javacomplete#Complete
-  autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS "teramako/jscomplete-vim
-  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
-
 call neobundle#end()
+
 
 filetype plugin indent on
 
@@ -328,6 +318,11 @@ endif
 
 if neobundle#tap('jscomplete-vim')
   let g:jscomplete_use = ['dom']
+
+  augroup OmnifuncSetting
+    autocmd!
+    autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
+  augroup END
 
   call neobundle#untap()
 endif
