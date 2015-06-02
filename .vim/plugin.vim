@@ -165,10 +165,7 @@ if neobundle#tap('unite.vim')
     imap <silent><buffer> <S-TAB> <Plug>(unite_select_previous_line)
   endfunction
 
-  augroup UniteSetting
-    autocmd!
-    autocmd FileType unite call s:unite_setting()
-  augroup END
+  autocmd MyAutoCmd FileType unite call s:unite_setting()
 
   " buffer
   nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
@@ -319,10 +316,7 @@ endif
 if neobundle#tap('jscomplete-vim')
   let g:jscomplete_use = ['dom']
 
-  augroup OmnifuncSetting
-    autocmd!
-    autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
-  augroup END
+  autocmd MyAutoCmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 
   call neobundle#untap()
 endif
@@ -374,17 +368,14 @@ endif
 
 if neobundle#tap('wombat256.vim')
   set background=dark
-  augroup CustomColorScheme
-    autocmd!
-    autocmd InsertEnter             * highlight StatusLine   ctermfg=21   ctermbg=226  cterm=BOLD
-    autocmd InsertLeave,ColorScheme * highlight StatusLine   ctermfg=226  ctermbg=33   cterm=NONE
-    autocmd ColorScheme             * highlight StatusLineNC ctermfg=240  ctermbg=253
-    autocmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
-    autocmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
-    autocmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
-    autocmd ColorScheme             * highlight NonText      ctermfg=245  ctermbg=NONE
-    autocmd ColorScheme             * highlight SpecialKey   ctermfg=16   ctermbg=235
-  augroup END
+  autocmd MyAutoCmd InsertEnter             * highlight StatusLine   ctermfg=21   ctermbg=226  cterm=BOLD
+  autocmd MyAutoCmd InsertLeave,ColorScheme * highlight StatusLine   ctermfg=226  ctermbg=33   cterm=NONE
+  autocmd MyAutoCmd ColorScheme             * highlight StatusLineNC ctermfg=240  ctermbg=253
+  autocmd MyAutoCmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
+  autocmd MyAutoCmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
+  autocmd MyAutoCmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
+  autocmd MyAutoCmd ColorScheme             * highlight NonText      ctermfg=245  ctermbg=NONE
+  autocmd MyAutoCmd ColorScheme             * highlight SpecialKey   ctermfg=16   ctermbg=235
   colorscheme wombat256mod
 
   call neobundle#untap()

@@ -4,6 +4,10 @@ scriptencoding utf-8
 " Note: Skip initialization for vim-tiny or vim-small
 if !1 | finish | endif
 
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 syntax on
 
 let mapleader = ";"
@@ -12,10 +16,7 @@ source $VIMRUNTIME/macros/matchit.vim
 " 外部で変更のあったファイルを自動的に読みなおす
 set autoread
 set updatetime=500
-augroup AutoreadChecktime
-  autocmd!
-  autocmd BufEnter,WinEnter,CursorHold * checktime
-augroup END
+autocmd MyAutoCmd BufEnter,WinEnter,CursorHold * checktime
 
 " 起動時のスプラッシュを表示しない
 set shortmess+=I
@@ -120,13 +121,10 @@ if exists('&colorcolumn')
 endif
 
 " JISに誤認したASCIIファイルのエンコーディングを修正する
-augroup CorrectFileEncoding
-  autocmd!
-  autocmd BufReadPost *
-  \ if &l:fileencoding ==# 'iso-2022-jp' && search('[^\x01-\x7e]', 'n') == 0 |
-  \   let &l:fileencoding = &encoding |
-  \ endif
-augroup END
+autocmd MyAutoCmd BufReadPost *
+\ if &l:fileencoding ==# 'iso-2022-jp' && search('[^\x01-\x7e]', 'n') == 0 |
+\   let &l:fileencoding = &encoding |
+\ endif
 
 " バッファを閉じる
 nnoremap <silent> <Leader>d :<C-u>bdelete<CR>
@@ -146,13 +144,10 @@ if has('path_extra')
 endif
 
 " カーソル位置を復元
-augroup RestoreCursorPos
-  autocmd!
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
-augroup END
+autocmd MyAutoCmd BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\   exe "normal g`\"" |
+\ endif
 
 " ウィンドウの大きさを保存、復元
 if has('gui')
@@ -171,18 +166,12 @@ if has('gui')
     call writefile(options, g:window_pos_file)
   endfunction
 
-  augroup SaveWindowPos
-    autocmd!
-    autocmd VimLeavePre * call s:save_window_pos()
-  augroup END
+  autocmd MyAutoCmd VimLeavePre * call s:save_window_pos()
 endif
 
 " ファイルタイプ別のタブ設定
-augroup TabSetting
-  autocmd!
-  autocmd FileType ruby,eruby setlocal softtabstop=2 shiftwidth=2
-  autocmd FileType vim setlocal softtabstop=2 shiftwidth=2
-augroup END
+autocmd MyAutoCmd FileType ruby,eruby setlocal softtabstop=2 shiftwidth=2
+autocmd MyAutoCmd FileType vim setlocal softtabstop=2 shiftwidth=2
 
 " Vim script の継続行のインデントを無効にする
 let g:vim_indent_cont = 0
