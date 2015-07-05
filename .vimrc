@@ -134,6 +134,11 @@ nnoremap <silent> <Leader>D :<C-u>bdelete!<CR>
 nnoremap j gj
 nnoremap k gk
 
+" yank,paste後のカーソル位置
+vnoremap <silent> y ygv<ESC>
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
 " QuickFix
 command! QfClear call setqflist([]) | doautocmd QuickFixCmdPost
 command! LocClear call setloclist(0, []) | doautocmd QuickFixCmdPost
