@@ -70,7 +70,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle "haya14busa/incsearch.vim"
 NeoBundle "osyo-manga/vim-anzu"
 NeoBundle "AndrewRadev/switch.vim"
-NeoBundle 'gcmt/wildfire.vim'
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -351,10 +351,9 @@ if neobundle#tap('switch.vim')
   call neobundle#untap()
 endif
 
-if neobundle#tap('wildfire.vim')
-  map <PageUp> <Plug>(wildfire-fuel)
-  vmap <PageDown> <Plug>(wildfire-water)
-  let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
+if neobundle#tap('vim-expand-region')
+  vmap v <Plug>(expand_region_expand)
+  vmap <C-v> <Plug>(expand_region_shrink)
 
   call neobundle#untap()
 endif
