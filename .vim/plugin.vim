@@ -61,6 +61,7 @@ NeoBundle 'hynek/vim-python-pep8-indent'
 
 " その他
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 't9md/vim-textmanip'
@@ -217,6 +218,12 @@ if neobundle#tap('indentLine')
   call neobundle#untap()
 endif
 
+if neobundle#tap('vim-trailing-whitespace')
+  let g:extra_whitespace_ignored_filetypes = ['unite']
+
+  call neobundle#untap()
+endif
+
 if neobundle#tap('vim-quickhl')
   nmap <Space>m <Plug>(quickhl-manual-this)
   xmap <Space>m <Plug>(quickhl-manual-this)
@@ -270,7 +277,7 @@ if neobundle#tap('html5.vim')
 endif
 
 if neobundle#tap('closetag.vim')
-  let g:closetag_html_style = 1 
+  let g:closetag_html_style = 1
 
   call neobundle#untap()
 endif
