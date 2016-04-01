@@ -62,20 +62,15 @@ NeoBundle 'hynek/vim-python-pep8-indent'
 " その他
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'mhinz/vim-signify'
-NeoBundle 'fuenor/im_control.vim'
 NeoBundle 't9md/vim-quickhl'
 NeoBundle 't9md/vim-textmanip'
-NeoBundle 'kana/vim-submode'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle "haya14busa/incsearch.vim"
 NeoBundle "osyo-manga/vim-anzu"
 NeoBundle "AndrewRadev/switch.vim"
-NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
-NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'thinca/vim-localrc'
-"NeoBundle 'cohama/lexima.vim'
 NeoBundle 'wombat256.vim'
 
 call neobundle#end()
@@ -234,13 +229,6 @@ if neobundle#tap('indentLine')
   call neobundle#untap()
 endif
 
-if neobundle#tap('im_control.vim')
-  "let IM_CtrlMode = has('gui_running') ? 4 : 0
-  "inoremap <silent> <C-j> <C-^><C-r>=IMState('FixMode')<CR>
-
-  call neobundle#untap()
-endif
-
 if neobundle#tap('vim-quickhl')
   nmap <Space>m <Plug>(quickhl-manual-this)
   xmap <Space>m <Plug>(quickhl-manual-this)
@@ -263,20 +251,6 @@ if neobundle#tap('vim-textmanip')
   xmap <C-k> <Plug>(textmanip-move-up)
   xmap <C-h> <Plug>(textmanip-move-left)
   xmap <C-l> <Plug>(textmanip-move-right)
-
-  call neobundle#untap()
-endif
-
-if neobundle#tap('vim-submode')
-  set nowrap
-  call submode#enter_with('scroll', 'n', '', '<leader><leader>h', '4zh')
-  call submode#enter_with('scroll', 'n', '', '<leader><leader>j', '2<C-e>')
-  call submode#enter_with('scroll', 'n', '', '<leader><leader>k', '2<C-y>')
-  call submode#enter_with('scroll', 'n', '', '<leader><leader>l', '4zl')
-  call submode#map('scroll', 'n', '', 'h', '4zh')
-  call submode#map('scroll', 'n', '', 'j', '2<C-e>')
-  call submode#map('scroll', 'n', '', 'k', '2<C-y>')
-  call submode#map('scroll', 'n', '', 'l', '4zl')
 
   call neobundle#untap()
 endif
@@ -347,13 +321,6 @@ endif
 
 if neobundle#tap('switch.vim')
   nnoremap <silent> - :<C-u>Switch<CR>
-
-  call neobundle#untap()
-endif
-
-if neobundle#tap('vim-expand-region')
-  vmap v <Plug>(expand_region_expand)
-  vmap <C-v> <Plug>(expand_region_shrink)
 
   call neobundle#untap()
 endif
