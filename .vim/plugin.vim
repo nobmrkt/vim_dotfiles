@@ -151,22 +151,8 @@ if neobundle#tap('unite.vim')
   \   'prompt': '>'
   \ })
 
-  function! s:unite_setting()
-    nmap <silent><buffer> <ESC> Q
-    imap <silent><buffer> <ESC> <ESC>Q
-    imap <silent><buffer> <C-j> <Plug>(unite_select_next_line)
-    imap <silent><buffer> <C-k> <Plug>(unite_select_previous_line)
-    imap <silent><buffer> <TAB> <Plug>(unite_select_next_line)
-    imap <silent><buffer> <S-TAB> <Plug>(unite_select_previous_line)
-  endfunction
-
-  autocmd MyAutoCmd FileType unite call s:unite_setting()
-
   " buffer
   nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
-
-  " file file/new
-  nnoremap <silent> <leader>uf :<C-u>Unite -buffer-name=files file file/new<CR>
 
   " file_rec file_rec/async file_rec/git
   let s:source_rec = 'file_rec,file_rec/async,file_rec/git'
@@ -175,7 +161,7 @@ if neobundle#tap('unite.vim')
   if executable('ag')
     let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
   endif
-  nnoremap <silent> <leader>ur :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async:!<CR>
+  nnoremap <silent> <leader>uf :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async:!<CR>
 
   " grep
   if executable('ag')
@@ -192,6 +178,7 @@ endif
 if neobundle#tap('neomru.vim')
   let g:neomru#file_mru_path = expand('~/.vim/tmp/neomru/file')
   let g:neomru#directory_mru_path = expand('~/.vim/tmp/neomru/directory')
+  let g:neomru#time_format = "(%Y/%m/%d %H:%M:%S) "
 
   call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
   call unite#custom#source('file_mru', 'sorters', ['sorter_selecta'])
@@ -202,6 +189,7 @@ if neobundle#tap('neomru.vim')
 endif
 
 if neobundle#tap('unite-outline')
+  call unite#custom#source('outline', 'matchers', ['matcher_fuzzy'])
   nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
 
   call neobundle#untap()
