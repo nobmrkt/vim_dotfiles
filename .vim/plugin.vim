@@ -326,8 +326,8 @@ if neobundle#tap('switch.vim')
 endif
 
 if neobundle#tap('caw.vim')
-  nmap <Leader>c <Plug>(caw:i:toggle)
-  vmap <Leader>c <Plug>(caw:i:toggle)
+  nmap <Leader>c <Plug>(caw:hatpos:toggle)
+  vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
   call neobundle#untap()
 endif
