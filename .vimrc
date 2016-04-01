@@ -32,6 +32,9 @@ set scrolloff=5
 set sidescroll=2
 set sidescrolloff=10
 set display=lastline
+set wrap
+set breakindent
+set showbreak=..
 set lazyredraw
 
 " バッファの変更が保存されていなくても移動する
