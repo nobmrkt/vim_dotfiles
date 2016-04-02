@@ -61,7 +61,6 @@ NeoBundle 'hynek/vim-python-pep8-indent'
 
 " その他
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'mhinz/vim-signify'
 NeoBundle 't9md/vim-quickhl'
