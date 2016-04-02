@@ -60,6 +60,7 @@ NeoBundle 'shiena/vim-dbgp'
 NeoBundle 'hynek/vim-python-pep8-indent'
 
 " その他
+NeoBundle 'yonchu/accelerated-smooth-scroll'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'mhinz/vim-signify'
