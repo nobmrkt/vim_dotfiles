@@ -146,12 +146,8 @@ endif
 
 if neobundle#tap('unite.vim')
   let g:unite_data_directory = expand('~/.vim/tmp/unite')
+  let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
-
-  call unite#custom#profile('default', 'context', {
-  \   'start_insert': 1,
-  \   'prompt': '>'
-  \ })
 
   " buffer
   nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
