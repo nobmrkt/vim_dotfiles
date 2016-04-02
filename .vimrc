@@ -38,7 +38,7 @@ set lazyredraw
 set breakindent
 set showbreak=..
 set nowrap
-nnoremap <Leader>w :<C-u>set wrap! wrap?<CR>
+nnoremap <Leader>w :<C-u>setlocal wrap! wrap?<CR>
 
 " フリーカーソル(挿入モードは無効)
 set virtualedit=all
