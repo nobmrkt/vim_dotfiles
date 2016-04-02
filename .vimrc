@@ -32,10 +32,18 @@ set scrolloff=5
 set sidescroll=2
 set sidescrolloff=10
 set display=lastline
-set wrap
+set lazyredraw
+
+" 折り返し
 set breakindent
 set showbreak=..
-set lazyredraw
+set nowrap
+nnoremap <Leader>w :<C-u>set wrap! wrap?<CR>
+
+" フリーカーソル(挿入モードは無効)
+set virtualedit=all
+autocmd MyAutoCmd InsertEnter * setlocal virtualedit=
+autocmd MyAutoCmd InsertLeave * setlocal virtualedit=all
 
 " バッファの変更が保存されていなくても移動する
 set hidden
