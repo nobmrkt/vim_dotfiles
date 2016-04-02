@@ -71,6 +71,7 @@ NeoBundle "haya14busa/incsearch.vim"
 NeoBundle "haya14busa/vim-asterisk"
 NeoBundle "osyo-manga/vim-anzu"
 NeoBundle "AndrewRadev/switch.vim"
+NeoBundle 'kana/vim-submode'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'thinca/vim-localrc'
@@ -310,6 +311,20 @@ endif
 
 if neobundle#tap('switch.vim')
   nnoremap <silent> - :<C-u>Switch<CR>
+
+  call neobundle#untap()
+endif
+
+if neobundle#tap('vim-submode')
+  let g:submode_keep_leaving_key = 1
+
+  " 左スクロール
+  call submode#enter_with('zh', 'n', '', '<Leader>h', '2zh')
+  call submode#map('zh', 'n', '', 'h', '2zh')
+
+  " 右スクロール
+  call submode#enter_with('zl', 'n', '', '<Leader>l', '2zl')
+  call submode#map('zl', 'n', '', 'l', '2zl')
 
   call neobundle#untap()
 endif
