@@ -68,6 +68,7 @@ NeoBundle 't9md/vim-quickhl'
 NeoBundle 't9md/vim-textmanip'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle "haya14busa/incsearch.vim"
+NeoBundle "haya14busa/vim-asterisk"
 NeoBundle "osyo-manga/vim-anzu"
 NeoBundle "AndrewRadev/switch.vim"
 NeoBundle 'tyru/caw.vim'
@@ -284,25 +285,25 @@ if neobundle#tap('jscomplete-vim')
 endif
 
 if neobundle#tap('incsearch.vim')
-  let g:incsearch#auto_nohlsearch = 1
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
+
+  call neobundle#untap()
+endif
+
+if neobundle#tap('vim-asterisk')
+  map *  <Plug>(asterisk-z*)
+  map g* <Plug>(asterisk-gz*)
+  map #  <Plug>(asterisk-z#)
+  map g# <Plug>(asterisk-gz#)
 
   call neobundle#untap()
 endif
 
 if neobundle#tap('vim-anzu')
-  nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-  nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
-  nmap * <Plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)
-  nmap # <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)
+  nmap n  <Plug>(anzu-n-with-echo)
+  nmap N  <Plug>(anzu-N-with-echo)
 
   call neobundle#untap()
 endif
