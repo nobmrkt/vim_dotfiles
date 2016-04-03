@@ -70,6 +70,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle "haya14busa/incsearch.vim"
 NeoBundle "haya14busa/vim-asterisk"
 NeoBundle "osyo-manga/vim-anzu"
+NeoBundle 'rhysd/clever-f.vim'
 NeoBundle "AndrewRadev/switch.vim"
 NeoBundle 'kana/vim-submode'
 NeoBundle 'tyru/caw.vim'
