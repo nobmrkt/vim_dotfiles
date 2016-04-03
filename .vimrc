@@ -138,6 +138,14 @@ if exists('&colorcolumn')
   set colorcolumn=+1
 endif
 
+" 補完
+set completeopt=menuone
+set pumheight=20
+autocmd MyAutoCmd FileType *
+\ if &omnifunc == "" |
+\   setlocal omnifunc=syntaxcomplete#Complete |
+\ endif
+
 " JISに誤認したASCIIファイルのエンコーディングを修正する
 autocmd MyAutoCmd BufReadPost *
 \ if &l:fileencoding ==# 'iso-2022-jp' && search('[^\x01-\x7e]', 'n') == 0 |
