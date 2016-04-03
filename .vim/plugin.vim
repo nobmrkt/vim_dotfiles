@@ -25,6 +25,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimfiler.vim'
 "NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neco-syntax', { 'depends' : ["Shougo/neocomplete.vim"] }
 
 " unite.vim
 NeoBundle 'Shougo/unite.vim'
@@ -100,23 +101,19 @@ endif
 if neobundle#tap('neocomplete.vim')
   let g:neocomplete#data_directory = expand('~/.vim/tmp/neocomplete')
   let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_camel_case = 1
+  let g:neocomplete#enable_smart_case = 1
 
   if !exists('g:neocomplete#delimiter_patterns')
     let g:neocomplete#delimiter_patterns = {}
   endif
-  let g:neocomplete#delimiter_patterns['php'] = ['->', '::', '\']
+  let g:neocomplete#delimiter_patterns.php = ['->', '::', '\']
 
-  set completeopt=menuone
-  inoremap <expr><C-n> (pumvisible() ? "" : neocomplete#start_manual_complete()) . "\<C-n>"
-  inoremap <expr><C-p> (pumvisible() ? "" : neocomplete#start_manual_complete()) . "\<C-p>"
+  inoremap <expr><C-g> neocomplete#undo_completion()
+  inoremap <expr><C-l> neocomplete#complete_common_string()
   inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-  inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
-  inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
-  inoremap <expr><CR> neocomplete#close_popup() . "\<CR>"
-  inoremap <expr><C-y> neocomplete#close_popup()
-  inoremap <expr><C-e> neocomplete#cancel_popup()
+  inoremap <expr><C-h> "\<C-h>".(pumvisible() ?  neocomplete#start_manual_complete() : neocomplete#close_popup())
+  inoremap <expr><BS> "\<C-h>".(pumvisible() ?  neocomplete#start_manual_complete() : neocomplete#close_popup())
 
   call neobundle#untap()
 endif
