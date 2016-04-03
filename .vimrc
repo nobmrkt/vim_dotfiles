@@ -74,6 +74,13 @@ set hlsearch
 " バックスペースの設定
 set backspace=start,eol,indent
 
+" ウィンドウ
+set noequalalways
+set winheight=3
+
+" マウス
+set mouse=a
+
 " クリップボードの設定
 set clipboard+=unnamed
 
