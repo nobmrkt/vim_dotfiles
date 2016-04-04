@@ -169,6 +169,10 @@ vnoremap <silent> y ygv<ESC>
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" 挿入モード、コマンドラインから抜ける反応が鈍い問題の対処
+inoremap <ESC> <ESC><ESC>
+cnoremap <ESC> <C-u><ESC><C-l>
+
 " QuickFix
 command! QfClear call setqflist([]) | doautocmd QuickFixCmdPost
 command! LocClear call setloclist(0, []) | doautocmd QuickFixCmdPost
