@@ -1,13 +1,13 @@
 " neobundle.vim のインストールチェック
-if !isdirectory(expand('~/.vim/bundle/neobundle.vim'))
+if !isdirectory(expand('~/vimfiles/bundle/neobundle.vim'))
   finish
 endif
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/vimfiles/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/vimfiles/bundle/'))
 
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -92,14 +92,14 @@ endif
 
 if neobundle#tap('vimfiler.vim')
   let g:vimfiler_as_default_explorer = 1
-  let g:vimfiler_data_directory = expand('~/.vim/tmp/vimfiler')
+  let g:vimfiler_data_directory = expand('~/vimfiles/tmp/vimfiler')
   nnoremap <silent> <Leader>f :<C-u>VimFiler -status<CR>
 
   call neobundle#untap()
 endif
 
 if neobundle#tap('neocomplete.vim')
-  let g:neocomplete#data_directory = expand('~/.vim/tmp/neocomplete')
+  let g:neocomplete#data_directory = expand('~/vimfiles/tmp/neocomplete')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
 
@@ -119,7 +119,7 @@ if neobundle#tap('neocomplete.vim')
 endif
 
 if neobundle#tap('neocomplcache')
-  let g:neocomplcache_temporary_dir = expand('~/.vim/tmp/neocomplcache')
+  let g:neocomplcache_temporary_dir = expand('~/vimfiles/tmp/neocomplcache')
   let g:neocomplcache_enable_at_startup = 1
   let g:neocomplcache_enable_camel_case_completion = 1
   let g:neocomplcache_enable_underbar_completion = 1
@@ -145,7 +145,7 @@ if neobundle#tap('neocomplcache')
 endif
 
 if neobundle#tap('unite.vim')
-  let g:unite_data_directory = expand('~/.vim/tmp/unite')
+  let g:unite_data_directory = expand('~/vimfiles/tmp/unite')
   let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
 
@@ -174,8 +174,8 @@ if neobundle#tap('unite.vim')
 endif
 
 if neobundle#tap('neomru.vim')
-  let g:neomru#file_mru_path = expand('~/.vim/tmp/neomru/file')
-  let g:neomru#directory_mru_path = expand('~/.vim/tmp/neomru/directory')
+  let g:neomru#file_mru_path = expand('~/vimfiles/tmp/neomru/file')
+  let g:neomru#directory_mru_path = expand('~/vimfiles/tmp/neomru/directory')
   let g:neomru#time_format = "(%Y/%m/%d %H:%M:%S) "
 
   call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])

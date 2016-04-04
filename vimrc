@@ -24,7 +24,7 @@ set shortmess+=I
 " バックアップファイル、スワップファイルを作らない
 set nobackup
 set noswapfile
-set viminfo+=n~/.vim/tmp/viminfo
+set viminfo+=n~/vimfiles/tmp/viminfo
 
 " 表示関係
 set number
@@ -182,7 +182,7 @@ autocmd MyAutoCmd BufReadPost *
 
 " ウィンドウの大きさを保存、復元
 if has('gui')
-  let g:window_pos_file = expand('~/.vim/tmp/vimwinpos')
+  let g:window_pos_file = expand('~/vimfiles/tmp/vimwinpos')
 
   if has('vim_starting') && filereadable(g:window_pos_file)
     execute 'source '.g:window_pos_file
@@ -220,4 +220,4 @@ let g:markdown_fenced_languages = [
 \ ]
 
 " plugins
-source ~/.vim/plugin.vim
+source ~/vimfiles/plugin.vim
