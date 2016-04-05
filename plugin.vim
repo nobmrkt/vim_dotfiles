@@ -187,7 +187,7 @@ if neobundle#tap('unite.vim')
   " key mappings
   autocmd MyAutoCmd FileType unite call s:unite_my_settings()
   function! s:unite_my_settings()
-    nmap <buffer> <ESC> <C-g>
+    nmap <buffer> <ESC> Q
     imap <buffer> <C-j> <Nop>
     imap <buffer> <C-k> <Nop>
   endfunction
