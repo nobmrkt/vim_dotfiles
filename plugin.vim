@@ -146,29 +146,51 @@ endif
 
 if neobundle#tap('unite.vim')
   let g:unite_data_directory = expand('~/vimfiles/tmp/unite')
-  let g:unite_enable_start_insert = 1
   let g:unite_enable_auto_select = 0
 
-  " buffer
-  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=files buffer<CR>
+  call unite#custom#profile('default', 'context', {
+  \   'no_empty': 1,
+  \   'prompt_visible': 1,
+  \   'prompt_focus': 1,
+  \   'start_insert': 1,
+  \   'cursor_line_time': '0.0',
+  \   'no_restore': 1,
+  \ })
 
-  " file_rec file_rec/async file_rec/git
-  let s:source_rec = 'file_rec,file_rec/async,file_rec/git'
-  call unite#custom#source(s:source_rec, 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
-  call unite#custom#source(s:source_rec, 'sorters', ['sorter_selecta'])
-  if executable('ag')
-    let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup -g ""'
-  endif
+  call unite#filters#matcher_default#use('matcher_fuzzy')
+  call unite#filters#sorter_default#use('sorter_rank')
+
+  call unite#custom#profile('files', 'matchers', [
+  \   'matcher_fuzzy',
+  \   'matcher_hide_hidden_files',
+  \ ])
+  call unite#custom#profile('files', 'converters', [
+  \   'converter_relative_abbr',
+  \   'converter_relative_word',
+  \ ])
+
+  " buffer
+  nnoremap <silent> <leader>ub :<C-u>Unite -buffer-name=buffers buffer<CR>
+
+  " file_rec file_rec/async
+  " nnoremap <silent> <leader>uf :<C-u>UniteWithCurrentDir -buffer-name=files file_rec<CR>
   nnoremap <silent> <leader>uf :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async:!<CR>
 
   " grep
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
     let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_grep_max_candidates = 500
+    let g:unite_source_grep_default_opts = '-i --vimgrep --hidden --ignore ".svn" --ignore ".git"'
   endif
-  nnoremap <silent> <leader>ug :<C-u>Unite -no-empty grep:.::<CR>
+  nnoremap <silent> <leader>ug :<C-u>Unite grep:.::<CR>
+
+  " key mappings
+  autocmd MyAutoCmd FileType unite call s:unite_my_settings()
+  function! s:unite_my_settings()
+    nmap <buffer> <ESC> <C-g>
+    imap <buffer> <C-j> <Nop>
+    imap <buffer> <C-k> <Nop>
+  endfunction
 
   call neobundle#untap()
 endif
@@ -176,10 +198,6 @@ endif
 if neobundle#tap('neomru.vim')
   let g:neomru#file_mru_path = expand('~/vimfiles/tmp/neomru/file')
   let g:neomru#directory_mru_path = expand('~/vimfiles/tmp/neomru/directory')
-  let g:neomru#time_format = "(%Y/%m/%d %H:%M:%S) "
-
-  call unite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
-  call unite#custom#source('file_mru', 'sorters', ['sorter_selecta'])
   nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
   nnoremap <silent> <leader>uM :<C-u>UniteWithCurrentDir -buffer-name=files file_mru<CR>
 
@@ -187,8 +205,9 @@ if neobundle#tap('neomru.vim')
 endif
 
 if neobundle#tap('unite-outline')
-  call unite#custom#source('outline', 'matchers', ['matcher_fuzzy'])
-  nnoremap <silent> <leader>uo :<C-u>Unite outline<CR>
+  call unite#custom#source('outline', 'matchers', 'matcher_fuzzy')
+  call unite#custom#source('outline', 'sorters', 'sorter_nothing')
+  nnoremap <silent> <leader>uo :<C-u>Unite -buffer-name=outline outline<CR>
 
   call neobundle#untap()
 endif
