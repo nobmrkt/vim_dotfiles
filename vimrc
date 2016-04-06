@@ -74,7 +74,7 @@ set smartcase
 
 " 不可視文字の表示
 set list
-set listchars=tab:›-,eol:$,extends:^,precedes:^
+set listchars=tab:+-,extends:^,precedes:^
 
 " 検索結果のハイライト
 set hlsearch
