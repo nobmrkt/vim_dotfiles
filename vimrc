@@ -53,8 +53,9 @@ set virtualedit=all
 autocmd MyAutoCmd InsertEnter * setlocal virtualedit=
 autocmd MyAutoCmd InsertLeave * setlocal virtualedit=all
 
-" バッファの変更が保存されていなくても移動する
+" 未保存のバッファの設定
 set hidden
+set confirm
 
 " タブの設定
 set tabstop=8
