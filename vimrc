@@ -103,8 +103,11 @@ set regexpengine=1
 set iminsert=0
 set imsearch=0
 
-" ステータス行の設定
+" コマンドラインの設定
 set noshowmode
+set showcmd
+
+" ステータスラインの設定
 set laststatus=2
 set statusline=%{&ft=='help'?'HELP':get(g:mode_map,mode(),'?')}\ %{&readonly?'RO':&modified?'+':'-'}
 set statusline+=\ %t\ \(%<%{expand('%:h')!=''?expand('%:h'):'.'}\)
@@ -121,9 +124,6 @@ let g:mode_map = {
 \   'S' : 'S-LINE',
 \   "\<C-s>": 'S-BLOCK',
 \ }
-
-" コマンドラインの高さ
-set cmdheight=1
 
 " ファイルフォーマットの設定
 set fileformat=unix
