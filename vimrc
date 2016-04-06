@@ -69,16 +69,15 @@ set autoindent
 set smartindent
 set nocindent
 
-" 検索、補完時にスマートケースを有効にする
+" 検索の設定
+set hlsearch
+set incsearch
 set ignorecase
 set smartcase
 
 " 不可視文字の表示
 set list
 set listchars=tab:+-,extends:^,precedes:^
-
-" 検索結果のハイライト
-set hlsearch
 
 " バックスペースの設定
 set backspace=start,eol,indent
