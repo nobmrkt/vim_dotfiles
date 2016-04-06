@@ -44,7 +44,7 @@ set lazyredraw
 
 " 折り返し
 set breakindent
-set showbreak=..
+set showbreak=....
 set nowrap
 nnoremap <Leader>w :<C-u>setlocal wrap! wrap?<CR>
 

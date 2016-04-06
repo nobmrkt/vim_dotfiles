@@ -363,7 +363,7 @@ if neobundle#tap('wombat256.vim')
   autocmd MyAutoCmd ColorScheme             * highlight VertSplit    ctermfg=253  ctermbg=253
   autocmd MyAutoCmd ColorScheme             * highlight ColorColumn  ctermfg=NONE ctermbg=16
   autocmd MyAutoCmd ColorScheme             * highlight MatchParen   ctermfg=201  ctermbg=NONE
-  autocmd MyAutoCmd ColorScheme             * highlight NonText      ctermfg=238  ctermbg=NONE
+  autocmd MyAutoCmd ColorScheme             * highlight NonText      ctermfg=236  ctermbg=16
   autocmd MyAutoCmd ColorScheme             * highlight SpecialKey   ctermfg=16   ctermbg=235
   colorscheme wombat256mod
 
