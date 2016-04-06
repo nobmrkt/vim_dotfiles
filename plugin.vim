@@ -150,11 +150,8 @@ if neobundle#tap('unite.vim')
 
   call unite#custom#profile('default', 'context', {
   \   'no_empty': 1,
-  \   'prompt_visible': 1,
   \   'prompt_focus': 1,
-  \   'start_insert': 1,
   \   'cursor_line_time': '0.0',
-  \   'no_restore': 1,
   \ })
 
   call unite#filters#matcher_default#use('matcher_fuzzy')
@@ -179,10 +176,15 @@ if neobundle#tap('unite.vim')
   " grep
   if executable('ag')
     let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+    \ '--follow --nocolor --nogroup --hidden --smart-case '.
+    \ '--skip-vcs-ignores --ignore ".svn" --ignore ".git"'
     let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_grep_default_opts = '-i --vimgrep --hidden --ignore ".svn" --ignore ".git"'
   endif
-  nnoremap <silent> <leader>ug :<C-u>Unite grep:.::<CR>
+  nnoremap <silent> <leader>ug :<C-u>Unite -buffer-name=grep grep:.<CR>
+
+  " resume
+  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=resume -immediately resume<CR>
 
   " key mappings
   autocmd MyAutoCmd FileType unite call s:unite_my_settings()
