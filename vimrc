@@ -161,8 +161,8 @@ autocmd MyAutoCmd BufReadPost *
 \ endif
 
 " バッファを閉じる
-nnoremap <silent> <Leader>d :<C-u>bdelete<CR>
-nnoremap <silent> <Leader>D :<C-u>bdelete!<CR>
+nnoremap <silent> <Leader><Leader>d :<C-u>bdelete<CR>
+nnoremap <silent> <Leader><Leader>D :<C-u>bdelete!<CR>
 
 " カーソル移動
 nnoremap j gj

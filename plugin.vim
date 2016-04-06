@@ -275,7 +275,7 @@ if neobundle#tap('syntastic')
   call neobundle#untap()
 endif
 
-if neobundle#tap('vim-ddbgp')
+if neobundle#tap('vim-dbgp')
   let g:debuggerMaxDepth = 3
   let g:debuggerDedicatedTab = 0
   let g:debuggerTimeout = 30
