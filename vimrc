@@ -19,8 +19,7 @@ set timeout timeoutlen=1000 ttimeoutlen=50
 
 " 外部で変更のあったファイルを自動的に読みなおす
 set autoread
-set updatetime=500
-autocmd MyAutoCmd BufEnter,WinEnter,CursorHold * checktime
+autocmd MyAutoCmd BufEnter,WinEnter * checktime
 
 " 起動時のスプラッシュを表示しない
 set shortmess+=I
