@@ -55,10 +55,14 @@ NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'beyondwords/vim-twig'
 NeoBundle 'tokutake/twig-indent'
-NeoBundle 'shiena/vim-dbgp'
 
 " python
 NeoBundle 'hynek/vim-python-pep8-indent'
+
+" remote debugger
+" TODO 検証
+" NeoBundle 'shiena/vim-dbgp'
+" NeoBundle 'joonty/vdebug'
 
 " その他
 NeoBundle 'yonchu/accelerated-smooth-scroll'
