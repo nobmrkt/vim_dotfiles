@@ -172,6 +172,9 @@ vnoremap <silent> y ygv<ESC>
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" <NL>入力を禁止
+inoremap <NL> <Nop>
+
 " QuickFix
 command! QfClear call setqflist([]) | doautocmd QuickFixCmdPost
 command! LocClear call setloclist(0, []) | doautocmd QuickFixCmdPost
