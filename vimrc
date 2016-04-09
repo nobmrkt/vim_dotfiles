@@ -195,26 +195,6 @@ autocmd MyAutoCmd BufReadPost *
 \   exe "normal g`\"" |
 \ endif
 
-" ウィンドウの大きさを保存、復元
-if has('gui')
-  let g:window_pos_file = expand('~/vimfiles/tmp/vimwinpos')
-
-  if has('vim_starting') && filereadable(g:window_pos_file)
-    execute 'source '.g:window_pos_file
-  endif
-
-  function! s:save_window_pos()
-    let options = [
-    \   'set columns='.&columns,
-    \   'set lines='.&lines,
-    \   'winpos '.getwinposx().' '.getwinposy(),
-    \ ]
-    call writefile(options, g:window_pos_file)
-  endfunction
-
-  autocmd MyAutoCmd VimLeavePre * call s:save_window_pos()
-endif
-
 " ファイルタイプ別のタブ設定
 autocmd MyAutoCmd FileType ruby,eruby setlocal softtabstop=2 shiftwidth=2
 autocmd MyAutoCmd FileType vim setlocal softtabstop=2 shiftwidth=2
