@@ -4,6 +4,13 @@ scriptencoding utf-8
 " Note: Skip initialization for vim-tiny or vim-small
 if !1 | finish | endif
 
+if has('win32') || has('win64')
+  let $VIMFILES=expand('~/vimfiles')
+else
+  let $VIMFILES=expand('~/.vim')
+endif
+
+
 augroup MyAutoCmd
   autocmd!
 augroup END
@@ -27,14 +34,14 @@ set shortmess+=I
 " バックアップファイル、スワップファイルを作らない
 set nobackup
 set noswapfile
-set viminfo+=n~/vimfiles/tmp/viminfo
+set viminfo+=n$VIMFILES/tmp/viminfo
 
 " undo永続化
 if has('persistent_undo')
   set undofile
-  set undodir=~/vimfiles/tmp/undo
-  if !isdirectory(expand('~/vimfiles/tmp/undo'))
-    call mkdir(expand('~/vimfiles/tmp/undo'))
+  set undodir=$VIMFILES/tmp/undo
+  if !isdirectory(expand($VIMFILES.'/tmp/undo'))
+    call mkdir(expand($VIMFILES.'/tmp/undo'))
   endif
 endif
 
@@ -215,4 +222,4 @@ let g:markdown_fenced_languages = [
 \ ]
 
 " plugins
-source ~/vimfiles/plugin.vim
+source $VIMFILES/plugin.vim

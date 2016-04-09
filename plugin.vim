@@ -1,13 +1,13 @@
 " neobundle.vim のインストールチェック
-if !isdirectory(expand('~/vimfiles/bundle/neobundle.vim'))
+if !isdirectory(expand($VIMFILES.'/bundle/neobundle.vim'))
   finish
 endif
 
 if has('vim_starting')
-  set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+  set runtimepath+=$VIMFILES/bundle/neobundle.vim
 endif
 
-call neobundle#begin(expand('~/vimfiles/bundle/'))
+call neobundle#begin(expand($VIMFILES.'/bundle'))
 
 " NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -96,14 +96,14 @@ endif
 
 if neobundle#tap('vimfiler.vim')
   let g:vimfiler_as_default_explorer = 1
-  let g:vimfiler_data_directory = expand('~/vimfiles/tmp/vimfiler')
+  let g:vimfiler_data_directory = expand($VIMFILES.'/tmp/vimfiler')
   nnoremap <silent> <Leader>f :<C-u>VimFiler -status<CR>
 
   call neobundle#untap()
 endif
 
 if neobundle#tap('neocomplete.vim')
-  let g:neocomplete#data_directory = expand('~/vimfiles/tmp/neocomplete')
+  let g:neocomplete#data_directory = expand($VIMFILES.'/tmp/neocomplete')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
 
@@ -123,7 +123,7 @@ if neobundle#tap('neocomplete.vim')
 endif
 
 if neobundle#tap('neocomplcache')
-  let g:neocomplcache_temporary_dir = expand('~/vimfiles/tmp/neocomplcache')
+  let g:neocomplcache_temporary_dir = expand($VIMFILES.'/tmp/neocomplcache')
   let g:neocomplcache_enable_at_startup = 1
   let g:neocomplcache_enable_camel_case_completion = 1
   let g:neocomplcache_enable_underbar_completion = 1
@@ -149,7 +149,7 @@ if neobundle#tap('neocomplcache')
 endif
 
 if neobundle#tap('unite.vim')
-  let g:unite_data_directory = expand('~/vimfiles/tmp/unite')
+  let g:unite_data_directory = expand($VIMFILES.'/tmp/unite')
   let g:unite_enable_auto_select = 0
 
   call unite#custom#profile('default', 'context', {
@@ -192,8 +192,8 @@ if neobundle#tap('unite.vim')
 endif
 
 if neobundle#tap('neomru.vim')
-  let g:neomru#file_mru_path = expand('~/vimfiles/tmp/neomru/file')
-  let g:neomru#directory_mru_path = expand('~/vimfiles/tmp/neomru/directory')
+  let g:neomru#file_mru_path = expand($VIMFILES.'/tmp/neomru/file')
+  let g:neomru#directory_mru_path = expand($VIMFILES.'/tmp/neomru/directory')
   nnoremap <silent> <leader>um :<C-u>Unite -buffer-name=files file_mru<CR>
   nnoremap <silent> <leader>uM :<C-u>UniteWithCurrentDir -buffer-name=files file_mru<CR>
 

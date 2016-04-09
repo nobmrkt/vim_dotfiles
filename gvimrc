@@ -16,7 +16,7 @@ set guifont=Migu_1M:h12
 
 " ウィンドウの大きさを保存、復元
 if has('gui_running')
-  let g:window_pos_file = expand('~/vimfiles/tmp/vimwinpos')
+  let g:window_pos_file = expand($VIMFILES.'/tmp/vimwinpos')
 
   if has('vim_starting') && filereadable(g:window_pos_file)
     execute 'source '.g:window_pos_file
