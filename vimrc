@@ -28,9 +28,14 @@ set shortmess+=I
 set nobackup
 set noswapfile
 set viminfo+=n~/vimfiles/tmp/viminfo
-set undodir=~/vimfiles/tmp/undo
-if !isdirectory(expand('~/vimfiles/tmp/undo'))
-  call mkdir(expand('~/vimfiles/tmp/undo'))
+
+" undo永続化
+if has('persistent_undo')
+  set undofile
+  set undodir=~/vimfiles/tmp/undo
+  if !isdirectory(expand('~/vimfiles/tmp/undo'))
+    call mkdir(expand('~/vimfiles/tmp/undo'))
+  endif
 endif
 
 " 表示関係
