@@ -153,8 +153,9 @@ if neobundle#tap('unite.vim')
   let g:unite_enable_auto_select = 0
 
   call unite#custom#profile('default', 'context', {
-  \   'no_empty': 1,
+  \   'empty': 0,
   \   'prompt_focus': 1,
+  \   'start_insert': 0,
   \   'cursor_line_time': '0.0',
   \ })
 
@@ -186,17 +187,6 @@ if neobundle#tap('unite.vim')
     let g:unite_source_grep_recursive_opt = ''
   endif
   nnoremap <silent> <leader>ug :<C-u>Unite -buffer-name=grep grep:.<CR>
-
-  " resume
-  nnoremap <silent> <leader>ur :<C-u>Unite -buffer-name=resume -immediately resume<CR>
-
-  " key mappings
-  autocmd MyAutoCmd FileType unite call s:unite_my_settings()
-  function! s:unite_my_settings()
-    nmap <buffer> <ESC> Q
-    imap <buffer> <C-j> <Nop>
-    imap <buffer> <C-k> <Nop>
-  endfunction
 
   call neobundle#untap()
 endif
