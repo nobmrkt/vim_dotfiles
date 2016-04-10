@@ -80,6 +80,7 @@ NeoBundle "AndrewRadev/switch.vim"
 NeoBundle 'kana/vim-submode'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
+NeoBundle 'airblade/vim-rooter'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'wombat256.vim'
 
@@ -357,6 +358,12 @@ if neobundle#tap('caw.vim')
   vmap <Leader>c <Plug>(caw:hatpos:toggle)
 
   call neobundle#untap()
+endif
+
+if neobundle#tap('vim-rooter')
+  let g:rooter_use_lcd = 1
+  let g:rooter_change_directory_for_non_project_files = 'current'
+  let g:rooter_silent_chdir = 1
 endif
 
 if neobundle#tap('wombat256.vim')
