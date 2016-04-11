@@ -79,6 +79,7 @@ NeoBundle 'rhysd/clever-f.vim'
 NeoBundle "AndrewRadev/switch.vim"
 NeoBundle 'kana/vim-submode'
 NeoBundle 'tyru/caw.vim'
+NeoBundle 'sjl/gundo.vim'
 NeoBundle 'pbrisbin/vim-mkdir'
 NeoBundle 'airblade/vim-rooter'
 NeoBundle 'thinca/vim-localrc'
@@ -356,6 +357,14 @@ endif
 if neobundle#tap('caw.vim')
   nmap <Leader>c <Plug>(caw:hatpos:toggle)
   vmap <Leader>c <Plug>(caw:hatpos:toggle)
+
+  call neobundle#untap()
+endif
+
+if neobundle#tap('gundo.vim')
+  let g:gundo_right = 1
+
+  nnoremap <Leader>g :<C-u>GundoToggle<CR>
 
   call neobundle#untap()
 endif
