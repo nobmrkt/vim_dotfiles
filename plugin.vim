@@ -181,14 +181,18 @@ if neobundle#tap('unite.vim')
   nnoremap <silent> <leader>uf :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async:!<CR>
 
   " grep
-  if executable('ag')
+  if executable('jvgrep')
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-I'
+    let g:unite_source_grep_recursive_opt = ''
+  elseif executable('ag')
     let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts =
     \ '--follow --nocolor --nogroup --hidden --smart-case '.
     \ '--skip-vcs-ignores --ignore ".svn" --ignore ".git"'
     let g:unite_source_grep_recursive_opt = ''
   endif
-  nnoremap <silent> <leader>ug :<C-u>Unite -buffer-name=grep grep:.<CR>
+  nnoremap <silent> <leader>ug :<C-u>Unite -buffer-name=grep -no-quit grep:.<CR>
 
   call neobundle#untap()
 endif
