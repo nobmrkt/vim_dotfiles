@@ -51,6 +51,9 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jason0x43/vim-js-indent'
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 
+" json
+NeoBundle 'elzr/vim-json'
+
 " php/twig
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'beyondwords/vim-twig'
@@ -226,6 +229,10 @@ if neobundle#tap('vim-versions')
   nnoremap <silent> <leader>uvc :<C-u>UniteVersions changeset<CR>
 
   call neobundle#untap()
+endif
+
+if neobundle#tap('vim-json')
+  let g:vim_json_syntax_conceal = 0
 endif
 
 if neobundle#tap('indentLine')
