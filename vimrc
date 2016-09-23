@@ -54,8 +54,10 @@ set display=lastline
 set lazyredraw
 
 " 折り返し
-set breakindent
-set showbreak=....
+if exists('+breakindent')
+  set breakindent
+  set showbreak=....
+endif
 set nowrap
 nnoremap <Leader>w :<C-u>setlocal wrap! wrap?<CR>
 
