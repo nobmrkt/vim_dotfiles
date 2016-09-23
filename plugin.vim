@@ -51,6 +51,9 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jason0x43/vim-js-indent'
 NeoBundle 'https://bitbucket.org/teramako/jscomplete-vim.git'
 
+" coffeescript
+NeoBundle 'kchmck/vim-coffee-script'
+
 " json
 NeoBundle 'elzr/vim-json'
 
@@ -279,6 +282,8 @@ if neobundle#tap('syntastic')
   let g:syntastic_error_symbol = 'E'
   let g:syntastic_warning_symbol = 'W'
 
+  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
+  let g:syntastic_ruby_checkers = ['rubocop']
   call neobundle#untap()
 endif
 
